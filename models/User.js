@@ -5,6 +5,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    matricNo: {
+        type: String,
+        required: true
+    },
     email: {
         type: String,
         required: true
@@ -12,6 +16,10 @@ const UserSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    avatar: {
+        type: String,
+        required: false
     },
     date: {
         type: String,

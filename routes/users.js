@@ -14,11 +14,11 @@ router.get('/register', (req, res) => res.render('../views/register'));
 //Register Handle
 router.post('/register', (req, res) => {
  
-    const { name, email, password, password2 } = req.body;
+    const { name, matricNo, email, password, password2, avatar } = req.body;
     let errors = [];
 
     //check required fields
-    if(!name || !email || !password || !password2) {
+    if(!name || !matricNo || !email || !password || !password2) {
         errors.push({ msg: 'Please fill in all fields'});
     };
         //check password match
@@ -35,31 +35,36 @@ router.post('/register', (req, res) => {
         res.render('register', {
             errors,
             name,
+            matricNo,
             email,
             password,
-            password2
+            password2,
+            avatar
         });
     } else {
-        console.log('why isnt it updated');
         //Validation passed
-        User.findOne({ email: email })
+        User.findOne({ matricNo: matricNo })
             .then(user => {
                 if(user) {
                     console.log('User exists');
                     //User exists
-                    errors.push({ msg: 'Email is already registered' });
+                    errors.push({ msg: 'This email is already registered' });
                     res.render('register', {
                         errors,
                         name,
+                        matricNo,
                         email,
                         password,
-                        password2
+                        password2,
+                        avatar
                     });
                 } else {
                     const newUser = new User({ 
                         name,
+                        matricNo,
                         email,
-                        password
+                        password,
+                        avatar
                     });
                 //    console.log(newUser);
                 //    res.send('hello');
@@ -90,5 +95,23 @@ router.post('/login', (req, res, next) => {
         failureRedirect: './login',
         failureFlash: true
     })(req, res, next);
+});
+
+// Logout
+router.get('/logout', (req, res) => {
+    req.logout();
+    req.flash('success_msg', 'You are logged out');
+    res.redirect('/users/login');
+  });
+
+// User Profile
+router.get("/users/:id", (req, res) => {
+    User.findById(req.params.id, function(err, foundUser) {
+        if(err) {
+            req.flash("error", "Something went wrong.");
+            res.redirect("/");
+        }
+        res.render("users/show", {user: foundUser});
+    });
 });
 module.exports = router;
