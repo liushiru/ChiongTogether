@@ -27,7 +27,7 @@
                   id="matricNo"
                   name="matricNo"
                   class="form-control"
-                  placeholder="AXXXXXXXX"
+                  placeholder="Axxxxxxxx"
                   value="<%= typeof matricNo != 'undefined' ? matricNo : '' %>"
                   />
               </div>
@@ -40,6 +40,17 @@
                   class="form-control"
                   placeholder="Exxxxxxx@u.nus.edu"
                   value="<%= typeof email != 'undefined' ? email : '' %>"
+                />
+              </div>
+              <div class="form-group">
+                <label for="email">Current Year</label>
+                <input
+                  type="year"
+                  id="year"
+                  name="year"
+                  class="form-control"
+                  placeholder="Year 1 - 4"
+                  value="<%= typeof year != 'undefined' ? year : '' %>"
                 />
               </div>
               <div class="form-group">

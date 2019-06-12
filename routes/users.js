@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 // Uswer model
 const User = require('../models/User');
 
@@ -48,7 +49,7 @@ router.post('/register', (req, res) => {
                 if(user) {
                     console.log('User exists');
                     //User exists
-                    errors.push({ msg: 'This email is already registered' });
+                    errors.push({ msg: 'This Matric Card Number is already registered' });
                     res.render('register', {
                         errors,
                         name,
@@ -105,13 +106,25 @@ router.get('/logout', (req, res) => {
   });
 
 // User Profile
-router.get("/users/:id", (req, res) => {
-    User.findById(req.params.id, function(err, foundUser) {
-        if(err) {
-            req.flash("error", "Something went wrong.");
-            res.redirect("/");
-        }
-        res.render("users/show", {user: foundUser});
-    });
+// router.get("/users/:id", (req, res) => {
+//     User.findById(req.params.id, function(err, foundUser) {
+//         if(err) {
+//             req.flash("error", "Something went wrong.");
+//             res.redirect("/");
+//         }
+//         res.render("users/show", {user: foundUser});
+//     });
+// });
+
+router.get("/:name", ensureAuthenticated, (req, res, next) =>{
+    res.render('../views/profile/show', {
+      user: req.user
+    })
+  });
+
+router.get("/profile_page", ensureAuthenticated, (req, res) =>{
+  res.render('../views/profile/show', {
+    user: req.user
+  })
 });
 module.exports = router;

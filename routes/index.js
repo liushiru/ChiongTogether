@@ -9,4 +9,16 @@ router.get('/dashboard', ensureAuthenticated, (req, res) =>
   })
 );
 
+router.get('/logout', (req, res) => {
+  req.logout();
+  req.flash('success_msg', 'You are logged out');
+  res.redirect('/users/login');
+});
+
+router.get("/shows", (req, res) =>{
+  res.render('../views/campgrounds/show', {
+    user: req.user
+  })
+});
+
 module.exports = router;
