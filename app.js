@@ -5,7 +5,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
 const app = express();
-
+const methodOverride = require('method-override');
 //Passport config
 require('./config/passport')(passport);
 
@@ -20,6 +20,8 @@ mongoose.connect(db, { useNewUrlParser: true})
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
 
+//methodOverride
+app.use(methodOverride('_method'));
 //Bodyparser
 app.use(express.urlencoded({ extended: false}));
 

@@ -15,10 +15,11 @@ router.get('/logout', (req, res) => {
   res.redirect('/users/login');
 });
 
-router.get("/shows", (req, res) =>{
-  res.render('../views/campgrounds/show', {
+router.get('/shows', (req, res) =>
+  res.render('../views/test', {
     user: req.user
   })
-});
+);
+
 
 module.exports = router;

@@ -24,7 +24,7 @@
                                         <%= user.name %>
                                     </h5>
                                     <h6>
-                                        Web Developer and Designer
+                                        Undergraduates
                                     </h6>
                                     <p class="proile-rating">Year : <span>1</span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -39,6 +39,12 @@
                     </div>
                     <div class="col-md-2">
                         <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+                        <a href="/users/<%= user.matricNo %>/edit"> edit </a>
+                        <!-- <form method="POST" action="/users/<%= user.matricNo %>?_method=DELETE">
+                            <button type="submit">Delete</button>
+                        </form>  -->
+                        <%- include('../partials/delete_post', 
+                                    {url: `/users/${user.matricNo}`}) %>
                     </div>
                 </div>
                 <div class="row">
