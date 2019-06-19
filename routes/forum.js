@@ -10,15 +10,13 @@ router.get('/', (req, res) => {
 });
 
 //Create Post Page
-router.get('startJio', (req, res) => res.render('../views/forum/createPost'));
+router.get('/startJio', (req, res) => res.render('../views/forum/createPost'));
 
 //Register Handle
-router.post('startJio', ensureAuthenticated, (req, res) => {
+router.post('/startJio', ensureAuthenticated, (req, res) => {
  
     const { title, content } = req.body;
-    console.log(req);
-   // res.send(req);
-    var author = req.user;
+    const author = req.user;
     var comment = [];
     const newPost = new Post({
       title,
@@ -26,15 +24,12 @@ router.post('startJio', ensureAuthenticated, (req, res) => {
       author,
       comment
     });
-    console.log('new post:');console.log('new post:');console.log('new post:');console.log('new post:');console.log('new post:');console.log('new post:');
+    console.log('new posttttttt:');console.log('new post:');console.log('new post:');console.log('new post:');console.log('new post:');console.log('new post:');
     console.log('new post:');console.log('new post:');console.log('new post:');console.log('new post:');
-    console.log('new post:');console.log('new post:');console.log('new post:');console.log('new post:');console.log('new post:');
-    console.log('new post:');console.log('new post:');console.log('new post:');
+    console.log('new post:');console.log('new post:');console.log('new Posttttt:');console.log('new Posttttt:');console.log('new Posttttt:');
+    console.log('new Posttttt:');console.log('new post:');console.log('new posttttttt:');
     console.log(newPost);
-    console.log(' the following is req.user:');
-    console.log(req.user);
-    console.log(' the following is author:');
-    console.log(author);
+    
     res.send('okay');
     newPost.save()
       .then(post => {
