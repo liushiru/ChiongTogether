@@ -132,59 +132,6 @@ router.get("/:matricNo/edit", async (req, res) => {
     }
 });
 
-
-//Update User Profile
-/*
-router.put('/:matricNo', async (req, res) => {
- 
-    const { name, matricNo, email, password, password2, avatar } = req.body;
-    let errors = [];
-
-    //check required fields
-    if(!name || !matricNo || !email || !password || !password2) {
-        errors.push({ msg: 'Please fill in all fields'});
-    };
-        //check password match
-    if(password !== password2) {
-        errors.push({ msg: 'Passwords do not match' });
-    }
-
-    //Check password length
-    if(password.length < 6) {
-        errors.push({ msg: 'Password should be at least 6 characters'});
-    }
-
-    if(errors.length > 0) {
-        res.render('edit', {
-            errors,
-            name,
-            matricNo,
-            email,
-            password,
-            password2,
-            avatar
-        });
-    } else {
-        let user;
-        try {
-            user = await User.findById(req.params.matricNo);
-            await user.save();
-            res.redirect(`/users/${user.matricNo}`)
-        } catch {
-            if (user == null) {
-                res.redirect('/:matricNo');
-            } else {
-                res.render('/:matricNo/edit', {
-                    user: user,
-                    errorMessage: "Error updating user"
-                })
-            }
-        }
-
-    }
-});
-
-*/
 router.put('/change', async (req, res) => {
     let user;
     try {
