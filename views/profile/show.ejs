@@ -94,8 +94,17 @@
                             </div>
                       
                                     <div class="col-md-12">
-                                        <label>Your Bio</label><br/>
-                                        <p>Your detail description</p>
+                                        <label>Your Jios</label><br/>
+                                        <!-- <p>Your detail description</p> -->
+                                        <% for(var i=0; i<user.post.length; i++) { %>
+                                            <ul>
+                                                <li> 
+                                                    <a href=""> <%= user.post[i] %> </a>
+                                                    <%= post[i].title %>
+                                                    
+                                                </li>
+                                            </ul>
+                                        <% } %>
                                     </div>
                                 </div>
                             </div>

@@ -5,6 +5,7 @@ const passport = require('passport');
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 // Uswer model
 const User = require('../models/User');
+const Post = require('../models/Post');
 
 //login page
 router.get('/login', (req, res) => res.render('../views/login'));
@@ -65,7 +66,8 @@ router.post('/register', (req, res) => {
                         matricNo,
                         email,
                         password,
-                        avatar
+                        avatar,
+                        post: []
                     });
                 //    console.log(newUser);
                 //    res.send('hello');
@@ -117,9 +119,22 @@ router.get('/logout', (req, res) => {
 // });
 
 router.get("/:matricNo", ensureAuthenticated, (req, res, next) =>{
+    let post = [];
+    for( var i=0; i < req.user.post.length; i++) {
+        post[i] = Post.findById(req.user.post[i]);
+        //console.log('post[i]:') 
+        //console.log(post[i]);
+        console.log('findByIddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd')
+        console.log(req.user.post[i]);
+        console.log(Post.findById(req.user.post[i]));
+
+    }
     res.render('../views/profile/show', {
-      user: req.user
-    })
+      user: req.user,
+      post: post
+    });
+    //console.log('post: post');
+    //console.log(post);
   });
 
 

@@ -5,8 +5,22 @@ const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 const User = require('../models/User');
 const Post = require('../models/Post'); 
 
+
+
 router.get('/', (req, res) => {
-    res.render('../views/forum/mainForum');
+  /*  Post.find({}, (err, posts) => {
+      var postMap= {};
+      posts.forEach((post) => {
+        postMap[post.id] = post;
+      });
+      res.send(postMap);
+    }); */
+
+    Post.find({}, (err, posts) => {
+      res.render('../views/forum/mainForum' , {posts: posts});
+    });
+    //res.render('../views/forum/mainForum');
+
 });
 
 //Create Post Page
@@ -23,17 +37,20 @@ router.post('/startJio', ensureAuthenticated, (req, res) => {
       content,
       author,
       comment
-    });
-    console.log('new posttttttt:');console.log('new post:');console.log('new post:');console.log('new post:');console.log('new post:');console.log('new post:');
-    console.log('new post:');console.log('new post:');console.log('new post:');console.log('new post:');
-    console.log('new post:');console.log('new post:');console.log('new Posttttt:');console.log('new Posttttt:');console.log('new Posttttt:');
-    console.log('new Posttttt:');console.log('new post:');console.log('new posttttttt:');
-    console.log(newPost);
-    
+    });    
     res.send('okay');
     newPost.save()
       .then(post => {
       }).catch(err=> console.log(err));
+
+    User.findByIdAndUpdate(req.user.id, 
+      { "$push": {"post": newPost}},
+      function (err, user) {
+        if (err) throw err;
+      //  console.log(user);
+      }
+    );
+    console.log(req.user);
 });
 
 
