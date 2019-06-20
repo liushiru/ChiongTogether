@@ -53,5 +53,27 @@ router.post('/startJio', ensureAuthenticated, (req, res) => {
     console.log(req.user);
 });
 
+router.get('/:id', (req, res) => {
+  //res.send(req);  
+  //const postId = req.user.posts;
+  //const post = Post.findById(postId);
+  
+  Post.findOne({_id: req.params.id}, (err, post) => {
+    if (err) {
+      res.send(err);
+    } else {
+      User.findOne({_id: post.author}, (err, author) => {
+        if (err) {
+          res.send(err);
+        } else {
+          res.render('../views/forum/singleForum', {
+            post: post,
+            author: author
+          });
+        }
+      });      
+    }
+  });
+});
 
 module.exports = router;

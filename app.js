@@ -1,4 +1,5 @@
 const express = require("express");
+const bodyParser = require('body-parser');
 const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const flash = require('connect-flash');
@@ -6,6 +7,7 @@ const session = require('express-session');
 const passport = require('passport');
 const app = express();
 const methodOverride = require('method-override');
+
 //Passport config
 require('./config/passport')(passport);
 
@@ -57,6 +59,18 @@ app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
 app.use('/forum', require('./routes/forum'));
 
+//Body-parser
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+ 
+// parse application/json
+app.use(bodyParser.json())
+ 
+app.use(function (req, res) {
+  res.setHeader('Content-Type', 'text/plain')
+  res.write('you posted:\n')
+  res.end(JSON.stringify(req.body, null, 2))
+})
 
 
 const PORT = process.env.PORT || 5000;

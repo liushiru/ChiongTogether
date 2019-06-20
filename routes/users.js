@@ -107,17 +107,8 @@ router.get('/logout', (req, res) => {
     res.redirect('/users/login');
   });
 
-// User Profile
-// router.get("/users/:id", (req, res) => {
-//     User.findById(req.params.id, function(err, foundUser) {
-//         if(err) {
-//             req.flash("error", "Something went wrong.");
-//             res.redirect("/");
-//         }
-//         res.render("users/show", {user: foundUser});
-//     });
-// });
 
+//trying to pass in all the posts the user have
 router.get("/:matricNo", ensureAuthenticated, (req, res, next) =>{
     let post = [];
     for( var i=0; i < req.user.post.length; i++) {
