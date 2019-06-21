@@ -31,6 +31,12 @@ const UserSchema = new mongoose.Schema({
            ref: "Post"
         }
      ],
+     comment: [
+         {
+             type: mongoose.Schema.Types.ObjectId,
+             ref: "Comment"
+         }
+     ],
     date: {
         type: String,
         default: Date.now

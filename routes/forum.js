@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
+ObjectId = require('mongoose').ObjectID;
 // User model
 const User = require('../models/User');
 const Post = require('../models/Post'); 
-
+const Comment = require('../models/Comment');
 
 
 router.get('/', (req, res) => {
@@ -54,10 +55,6 @@ router.post('/startJio', ensureAuthenticated, (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  //res.send(req);  
-  //const postId = req.user.posts;
-  //const post = Post.findById(postId);
-  
   Post.findOne({_id: req.params.id}, (err, post) => {
     if (err) {
       res.send(err);
@@ -74,6 +71,43 @@ router.get('/:id', (req, res) => {
       });      
     }
   });
+});
+
+router.put('/addComment', ensureAuthenticated, async (req, res) => {
+  //Handle comment
+  const newComment = new Comment({
+    content: req.body.comment, 
+    author: req.user
+  });
+  await newComment.save()
+     .then(comment => {
+       console.log('comment saved successfully');
+     }).catch(err => console.log(err));
+  
+  
+  //handle User
+  User.findByIdAndUpdate(req.user.id, 
+    {"$push" : {"comment": newComment}},
+    (err, user) => {
+      if(err) throw err;
+      //else author = user;
+    });
+
+
+  //handle Forum
+  Post.findByIdAndUpdate(req.body.postId, 
+    {"$push" : {"comment": newComment}},
+    (err, post) => {
+      if(err) throw err;
+    });
+
+  res.send('okay');
+    // res.render('../views/forum/singleForum', {
+    //   post: a_post,
+    //   author: author
+    // });
+    // console.log(a_post);
+    
 });
 
 module.exports = router;

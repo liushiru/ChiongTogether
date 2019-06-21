@@ -3,4 +3,6 @@
 3. ensureAuthenticated every page
 4. gender enum male female
 5. profile page: get title
-6. fix bug for profile page
+6. fix bug for profile page (profile page can only edit by oneself)
+7. edit post: 
+8. 

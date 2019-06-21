@@ -1,6 +1,16 @@
 const mongoose = require('mongoose');
 const timestamps = require('mongoose-timestamp');
 
+// const CommentSchema = new mongoose.Schema({
+//     response: {
+//         type: String,
+//         required: true
+//     },
+//     author: {
+//         type: mongoose.Schema.Types.ObjectId,
+//         ref: "User"
+//     }
+// })
 const PostSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -14,13 +24,12 @@ const PostSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
-    comments: [
-        {
-           type: mongoose.Schema.Types.ObjectId,
-           ref: "Comment"
-        }
-     ]
+    comment: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Comment"
+    }
 });
+
 PostSchema.plugin(timestamps);
 //createdAt + updatedAt
 mongoose.model('Post', PostSchema);

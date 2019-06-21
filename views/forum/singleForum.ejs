@@ -1,6 +1,107 @@
-<h1>lol this is a post</h1>
-<h2>Title: <%= post.title %></h2>
-<h3>Content <%= post.content %></h3>
-<h4>Created At: <%= post.createdAt %></h4>
-<h4>By: <a href="/users/<%= author.matricNo %>"><%= author.name %> </a> </h4>
-<h4>Add Comment here: </h4>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Blog Post - Start Bootstrap Template</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/blog-post.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Post Content Column -->
+      <div class="col-lg-8">
+
+        <!-- Title -->
+        <h1 class="mt-4">Post Title: <%= post.title %></h1>
+
+        <!-- Author -->
+        <p class="lead">
+          <a href="/users/<%= author.matricNo %>"><%= author.name %></a>
+        </p>
+
+        <hr>
+
+        <!-- Date/Time -->
+        <p>Posted on: <%= post.createdAt %></p>
+
+        <hr>
+
+        <!-- Preview Image -->
+        <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+
+        <hr>
+
+        <!-- Post Content -->
+        <p class="lead"><%= post.content %></p>
+
+        <hr>
+
+        <!-- Comments Form -->
+        <div class="card my-4">
+          <h5 class="card-header">Leave a Comment:</h5>
+          <div class="card-body">
+            <form action="/forum/addComment?_method=PUT" method="POST">
+              <div class="form-group">
+                <textarea 
+                  class="form-control" 
+                  rows="3"
+                  type="comment"
+                  id="comment"
+                  name="comment"
+                ></textarea>
+                <input type="hidden" id="postId" name="postId" value="<%= post.id %>">
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Single Comment -->
+        <% for(var i=0; i<2; i++) {%>
+        <div class="media mb-4">
+          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+          <div class="media-body">
+            <h5 class="mt-0"><%= post %></h5>
+            <%= post %>
+          </div>
+        </div>
+        <% } %>
+      </div>
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Shiru & Yuxuan 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

@@ -112,17 +112,16 @@ router.get('/logout', (req, res) => {
 router.get("/:matricNo", ensureAuthenticated, (req, res, next) =>{
     let post = [];
     for( var i=0; i < req.user.post.length; i++) {
-        post[i] = Post.findById(req.user.post[i]);
+        Post.findById(req.user.post[i]);
         //console.log('post[i]:') 
         //console.log(post[i]);
         console.log('findByIddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd')
-        console.log(req.user.post[i]);
-        console.log(Post.findById(req.user.post[i]));
+        //console.log(req.user.post[i]);
+        //console.log(Post.findById(req.user.post[i]));
 
     }
     res.render('../views/profile/show', {
-      user: req.user,
-      post: post
+      user: req.user
     });
     //console.log('post: post');
     //console.log(post);
@@ -141,8 +140,10 @@ router.get("/:matricNo/edit", async (req, res) => {
 router.put('/change', async (req, res) => {
     let user;
     try {
+
         user = await User.findById(req.user.id);
         user.name = req.body.name;
+        console.log(req.body);
         await user.save();
         res.redirect(`/users/${user.matricNo}`)
     } catch {

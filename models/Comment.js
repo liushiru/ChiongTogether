@@ -1,13 +1,18 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
+const timestamps = require('mongoose-timestamp');
 
 var CommentSchema = mongoose.Schema({
-    text: String,
+    content: {
+        type: String,
+        required: true
+    },
     author: {
-        id: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User"
-        }
     }
 });
 
-module.exports = mongoose.model("Comment", CommentSchema);
+CommentSchema.plugin(timestamps);
+const Comment = mongoose.model('Comment', CommentSchema);
+
+module.exports = Comment;
