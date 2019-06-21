@@ -25,6 +25,9 @@ mongoose.connect(db, { useNewUrlParser: true})
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
 
+//Static
+app.use('/style', express.static('style'));
+
 //methodOverride
 app.use(methodOverride('_method'));
 

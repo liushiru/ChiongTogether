@@ -1,35 +1,69 @@
+<div class="limiter">
+  <div class="container-login100">
+    <div class="wrap-login100">
 
-<div class="row mt-5">
-        <div class="col-md-6 m-auto">
-          <div class="card card-body">
-            <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i>  Login</h1>
-            <% include ./partials/messages %>
-            <form action="/users/login" method="POST">
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  class="form-control"
-                  placeholder="Enter Email"
-                />
-              </div>
-              <div class="form-group">
-                <label for="password">Password</label>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  class="form-control"
-                  placeholder="Enter Password"
-                />
-              </div>
-              <button type="submit" class="btn btn-primary btn-block">Login</button>
-            </form>
-            <p class="lead mt-4">
-              No Account? <a href="/users/register">Register</a>
-            </p>
+      <form class="login100-form validate-form" action="/users/login" method="POST">
+        <span class="login100-form-title p-b-43">
+          Login Chiong Together
+        </span>
+        
+        <!--Email-->
+        <div class="wrap-input100 validate-input form-group" data-validate = "Valid email is required: ex@abc.xyz">
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control input100"
+          />
+          <span class="focus-input100"></span>
+          <span class="label-input100" for="email">Email</span>
+        </div>
+        
+        <!--Password-->
+        <div class="wrap-input100 validate-input form-group" data-validate="Password is required">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control input100"
+          />
+          <span class="focus-input100"></span>
+          <span class="label-input100" for="password">Password</span>
+        </div>
+
+        <!--Remember me & Forget password-->
+        <div class="flex-sb-m w-full p-t-3 p-b-32">
+          <div class="contact100-form-checkbox">
+            <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+            <label class="label-checkbox100" for="ckb1">
+              Remember me
+            </label>
+          </div>
+
+          <div>
+            <a href="#" class="txt1">
+              Forgot Password?
+            </a>
           </div>
         </div>
+    
+        <!--Login-->
+        <div class="container-login100-form-btn">
+          <button class="login100-form-btn" type="submit">
+            Login
+          </button>
+        </div>
+
+        <!--Register-->
+        <div class="container-register100-form-btn">
+          <button class="register100-form-btn" >
+            Register
+          </button>
+        </div>
+      </form>
+
+      <div class="login100-more" style="background-image: url('/style/images/bg.jpg');">
       </div>
+    </div>
+  </div>
+</div>
