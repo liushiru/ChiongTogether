@@ -13,7 +13,8 @@ require('./config/passport')(passport);
 
 //DB Config
 const db = require('./config/keys').MongoURI;
-     //Connect to Mongo//pass in DB, return a promise
+
+//Connect to Mongo//pass in DB, return a promise
 mongoose.connect(db, { useNewUrlParser: true})
     .then(() => console.log('MongoDB Connected...'))
     .catch(err => console.log(err));
@@ -26,6 +27,7 @@ app.set('view engine', 'ejs');
 
 //methodOverride
 app.use(methodOverride('_method'));
+
 //Bodyparser
 app.use(express.urlencoded({ extended: false}));
 
@@ -50,9 +52,6 @@ app.use((req, res, next) => {
     res.locals.error = req.flash('error');
     next();
 })
-
-//app.engine('html', require('ejs').renderFile);
-//app.set('view engine', 'html');
 
 //Routes
 app.use('/', require('./routes/index'));
