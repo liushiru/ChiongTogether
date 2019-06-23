@@ -1,96 +1,100 @@
-    
-<div class="row mt-5">
-        <div class="col-md-6 m-auto">
-          <div class="card card-body">
-            <h1 class="text-center mb-3">
-              <i class="fas fa-user-plus"></i> Register
-            </h1>
-            
-            <% include ./partials/messages %>
+<div class="limiter">
+    <div class="right-side-container-1">
+      <div class="right-side-container-2">
 
-            <form action="/users/register" method="POST">
-              <div class="form-group">
-                <label for="name">Name</label>
-                <input
-                  type="name"
-                  id="name"
-                  name="name"
-                  class="form-control"
-                  placeholder="Enter Name"
-                  value="<%= typeof name != 'undefined' ? name : '' %>"
-                />
-              </div>
-              <div class="form-group">
-                <label for="matricNo">Matriculation Card Number</label>
-                <input 
-                  type="matricNo"
-                  id="matricNo"
-                  name="matricNo"
-                  class="form-control"
-                  placeholder="Axxxxxxxx"
-                  value="<%= typeof matricNo != 'undefined' ? matricNo : '' %>"
-                  />
-              </div>
-              <div class="form-group">
-                <label for="email">NUSNET Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  class="form-control"
-                  placeholder="Exxxxxxx@u.nus.edu"
-                  value="<%= typeof email != 'undefined' ? email : '' %>"
-                />
-              </div>
-              <div class="form-group">
-                <label for="email">Current Year</label>
-                <input
-                  type="year"
-                  id="year"
-                  name="year"
-                  class="form-control"
-                  placeholder="Year 1 - 4"
-                  value="<%= typeof year != 'undefined' ? year : '' %>"
-                />
-              </div>
-              <div class="form-group">
-                <label for="password">Password</label>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  class="form-control"
-                  placeholder="Create Password"
-                  value="<%= typeof password != 'undefined' ? password : '' %>"
-                />
-              </div>
-              <div class="form-group">
-                <label for="password2">Confirm Password</label>
-                <input
-                  type="password"
-                  id="password2"
-                  name="password2"
-                  class="form-control"
-                  placeholder="Confirm Password"
-                  value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
-                />
-              </div>
-              <div class="form-group">
-                <label for="avatar">Profile Picture</label>
-                <input
-                  type="avatar"
-                  id="avatar"
-                  name="avatar"
-                  class="form-control"
-                  placeholder="paste Avatar image Url"
-                  value="<%= typeof avatar != 'undefined' ? avatar : '' %>"
-                />
-              </div>
-              <button type="submit" class="btn btn-primary btn-block">
-                Register
-              </button>
-            </form>
-            <p class="lead mt-4">Have An Account? <a href="/users/login">Login</a></p>
+        <form class="login-form" action="/users/register" method="POST">
+          
+          <span class="login-form-title p-b-43">
+              Register
+          </span>
+
+          <% include ./partials/messages %>
+
+          <label for="name">Name</label>
+          <div class="type-in-bar">
+            <input
+              type="name"
+              id="name"                
+              name="name"
+              class="login-input"
+              placeholder="Enter Name"
+              value="<%= typeof name != 'undefined' ? name : '' %>"
+            />
           </div>
-        </div>
+
+          <label for="matricNo">Matriculation Card Number</label>
+          <div class="type-in-bar"> 
+            <input 
+              type="matricNo"
+              id="matricNo"
+              name="matricNo"
+              class="login-input"
+              placeholder="Axxxxxxxx"
+              value="<%= typeof matricNo != 'undefined' ? matricNo : '' %>"
+              />
+          </div>
+
+              
+          <label for="email">NUSNET Email</label>
+          <div class="type-in-bar">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="login-input"
+              placeholder="Exxxxxxx@u.nus.edu"
+              value="<%= typeof email != 'undefined' ? email : '' %>"
+            />
+          </div>
+              
+          <label for="email">Current Year</label>
+          <div class="type-in-bar">
+            <input
+              type="year"
+              id="year"
+              name="year"
+              class="login-input"
+              placeholder="Year 1 - 4"
+              value="<%= typeof year != 'undefined' ? year : '' %>"
+            />
+          </div>
+
+              
+          <label for="password">Password</label>
+          <div class="type-in-bar">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="login-input"
+              placeholder="Create Password"
+              value="<%= typeof password != 'undefined' ? password : '' %>"
+            />
+          </div>
+
+              
+          <label for="password2">Confirm Password</label>
+          <div class="type-in-bar">
+            <input
+              type="password"
+              id="password2"
+              name="password2"
+              class="login-input"
+              placeholder="Confirm Password"
+              value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
+            />
+          </div>
+
+          <lable>Have An Account? <a href="/users/login" class="have-account">Login</a></lable>
+          
+          <button type="submit" class="login-btn">
+            Register
+          </button>
+  
+        </form>
+      
+        <div class="left-side-pic" style="background-image: url('/style/images/bg.jpg');">
+      
       </div>
+    </div>
+</div>

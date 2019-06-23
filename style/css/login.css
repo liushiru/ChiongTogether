@@ -1,5 +1,4 @@
-/* FONT */
-
+/* --------------Font-------------------- */
 @font-face {
   font-family: Poppins-Regular;
   src: url('../fonts/poppins/Poppins-Regular.ttf'); 
@@ -35,7 +34,7 @@
   src: url('../fonts/montserrat/Montserrat-Regular.ttf'); 
 }
 
-/* RESTYLE TAG ]*/
+/*--------------------- RESTYLE TAG --------------------------*/
 
 * {
 	margin: 0px; 
@@ -67,7 +66,7 @@ a:focus {
 
 a:hover {
 	text-decoration: none;
-  color: #6675df;
+  color: #6972b6;
 }
 
 /*---------------------------------------------*/
@@ -87,7 +86,6 @@ ul, li {
 	margin: 0px;
 	list-style-type: none;
 }
-
 
 /*---------------------------------------------*/
 input {
@@ -145,11 +143,7 @@ iframe {
 	border: none !important;
 }
 
-/*//////////////////////////////////////////////////////////////////
-[ utility ]*/
-
-/*==================================================================
-[ Text ]*/
+/*--------------[ Text ]-----------------------*/
 .txt1 {
   font-family: Montserrat-Regular;
   font-size: 13px;
@@ -183,14 +177,13 @@ iframe {
 .bg3 {background: #cd201f;}
 
 
-/*//////////////////////////////////////////////////////////////////
-[ login ]*/
+/*-----------------------[ login ]------------------------------*/
 .limiter {
   width: 100%;
   margin: 0 auto;
 }
 
-.container-login100 {
+.right-side-container-1 {
   width: 100%;  
   min-height: 100vh;
   display: -webkit-box;
@@ -205,7 +198,7 @@ iframe {
 }
 
 
-.wrap-login100 {
+.right-side-container-2 {
   width: 100%;
   background: #fff;
   overflow: hidden;
@@ -220,9 +213,8 @@ iframe {
 
 }
 
-/*==================================================================
-[ login more ]*/
-.login100-more {
+/*----------------left side pic----------------------------*/
+.left-side-pic {
   width: calc(100% - 560px);
   background-repeat: no-repeat;
   background-size: cover;
@@ -231,7 +223,7 @@ iframe {
   z-index: 1;
 }
 
-.login100-more::before {
+.left-side-pic::before {
   content: "";
   display: block;
   position: absolute;
@@ -245,10 +237,9 @@ iframe {
 
 
 
-/*==================================================================
-[ Form ]*/
+/*---------------------- Form ------------------------*/
 
-.login100-form {
+.login-form {
   width: 560px;
   min-height: 100vh;
   display: block;
@@ -256,7 +247,7 @@ iframe {
   padding: 173px 55px 55px 55px;
 }
 
-.login100-form-title {
+.login-form-title {
   width: 100%;
   display: block;
   font-family: Poppins-Regular;
@@ -268,38 +259,18 @@ iframe {
 
 
 
-/*------------------------------------------------------------------
-[ Input ]*/
+/*------------------Input-----------------------------*/
 
-.wrap-input100 {
+.type-in-bar {
   width: 100%;
   height: 50px;
   border: 1px solid #e6e6e6;
+  background-color: white;
   border-radius: 10px;
   margin-bottom: 10px;
 }
 
-.label-input100 {
-  font-family: Montserrat-Regular;
-  font-size: 18px;
-  color: #999999;
-  line-height: 1.2;
-
-  display: block;
-  position: absolute;
-  pointer-events: none;
-  width: 100%;
-  padding-left: 24px;
-  left: 0;
-  top: 30px;
-
-  -webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
-  transition: all 0.4s;
-}
-
-.input100 {
+.login-input {
   display: block;
   width: 100%;
   background: transparent;
@@ -310,7 +281,7 @@ iframe {
   padding: 0 26px;
 }
 
-input.input100 {
+input.login-input {
   height: 100%;
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
@@ -318,140 +289,9 @@ input.input100 {
   transition: all 0.4s;
 }
 
-/*---------------------------------------------*/
+/*-----------------------Login Button (login & welcome)------------------------*/
 
-.focus-input100 {
-  position: absolute;
-  display: block;
-  width: calc(100% + 2px);
-  height: calc(100% + 2px);
-  top: -1px;
-  left: -1px;
-  pointer-events: none;
-  border: 1px solid #6675df;
-  border-radius: 10px;
-
-  visibility: hidden;
-  opacity: 0;
-
-  -webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
-  transition: all 0.4s;
-
-  -webkit-transform: scaleX(1.1) scaleY(1.3);
-  -moz-transform: scaleX(1.1) scaleY(1.3);
-  -ms-transform: scaleX(1.1) scaleY(1.3);
-  -o-transform: scaleX(1.1) scaleY(1.3);
-  transform: scaleX(1.1) scaleY(1.3);
-}
-
-.input100:focus + .focus-input100 {
-  visibility: visible;
-  opacity: 1;
-
-  -webkit-transform: scale(1);
-  -moz-transform: scale(1);
-  -ms-transform: scale(1);
-  -o-transform: scale(1);
-  transform: scale(1);
-}
-
-.eff-focus-selection {
-  visibility: visible;
-  opacity: 1;
-
-  -webkit-transform: scale(1);
-  -moz-transform: scale(1);
-  -ms-transform: scale(1);
-  -o-transform: scale(1);
-  transform: scale(1);
-}
-
-.input100:focus {
-  height: 48px;
-}
-
-.input100:focus + .focus-input100 + .label-input100 {
-  top: 14px;
-  font-size: 13px;
-}
-
-.has-val {
-  height: 48px !important;
-}
-
-.has-val + .focus-input100 + .label-input100 {
-  top: 14px;
-  font-size: 13px;
-}
-
-/*==================================================================
-[ Restyle Checkbox ]*/
-
-.input-checkbox100 {
-  display: none;
-}
-
-.label-checkbox100 {
-  font-family: Poppins-Regular;
-  font-size: 13px;
-  color: #999999;
-  line-height: 1.4;
-
-  display: block;
-  position: relative;
-  padding-left: 26px;
-  cursor: pointer;
-}
-
-.label-checkbox100::before {
-  content: "\f00c";
-  font-family: FontAwesome;
-  font-size: 13px;
-  color: transparent;
-
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  border-radius: 2px;
-  background: #fff;
-  border: 1px solid #6675df;
-  left: 0;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-
-.input-checkbox100:checked + .label-checkbox100::before {
-  color: #6675df;
-}
-
-
-/*------------------------------------------------------------------
-[Login Button ]*/
-.container-login100-form-btn {
-  width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.login100-form-btn {
+.login-btn {
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -460,43 +300,30 @@ input.input100 {
   justify-content: center;
   align-items: center;
   padding: 0 20px;
-  margin: 0 0 10px 0;
+  margin: 40px 0 20px 0;
   width: 100%;
   height: 50px;
   border-radius: 10px;
-  background: #5e6283;
+  background: #4f837f;
 
   font-family: Montserrat-Bold;
-  font-size: 12px;
+  font-size: 14px;
   color: #fff;
   line-height: 1.2;
   text-transform: uppercase;
-  letter-spacing: 1px;
-
-  -webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
-  transition: all 0.4s;
+  letter-spacing: 2px;
 }
 
-.login100-form-btn:hover {
-  background: #333333;
+.login-btn:hover {
+  background: #586160;
 }
 
-/*------------------------------------------------------------------
-[Register Button ]*/
-.container-register100-form-btn {
-  width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+.have-account {
+  font-size: 18px;
+  text-align: right;
 }
-
-.register100-form-btn {
+/*---------------------Register Button (welcome & login)--------------------------*/
+.register-btn {
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -508,141 +335,49 @@ input.input100 {
   width: 100%;
   height: 50px;
   border-radius: 10px;
-  background: #cececf;
+  background: #9abebc;
 
   font-family: Montserrat-Bold;
-  font-size: 12px;
+  font-size: 14px;
   color: rgb(63, 62, 62);
   line-height: 1.2;
   text-transform: uppercase;
-  letter-spacing: 1px;
-
-  -webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
-  transition: all 0.4s;
+  letter-spacing: 2px;
 }
 
-.register100-form-btn:hover {
-  background: #a3a1a1;
+.register-btn:hover {
+  background: #64a19d;
 }
 
 /*------------------------------------------------------------------
 [ Responsive ]*/
 
 @media (max-width: 992px) {
-  .login100-form {
+  .login-form {
     width: 50%;
     padding-left: 30px;
     padding-right: 30px;
   }
 
-  .login100-more {
+  .left-side-pic {
     width: 50%;
   }
 }
 
 @media (max-width: 768px) {
-  .login100-form {
+  .login-form {
     width: 100%;
   }
 
-  .login100-more {
+  .left-side-pic {
     display: none;
   }
 }
 
 @media (max-width: 576px) {
-  .login100-form {
+  .login-form {
     padding-left: 15px;
     padding-right: 15px;
     padding-top: 70px;
   }
-}
-
-
-/*------------------------------------------------------------------
-[ Alert validate ]*/
-
-.validate-input {
-  position: relative;
-}
-
-.alert-validate::before {
-  content: attr(data-validate);
-  position: absolute;
-  z-index: 100;
-  max-width: 70%;
-  background-color: #fff;
-  border: 1px solid #c80000;
-  border-radius: 2px;
-  padding: 4px 25px 4px 10px;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%);
-  right: 12px;
-  pointer-events: none;
-
-  font-family: Poppins-Regular;
-  color: #c80000;
-  font-size: 13px;
-  line-height: 1.4;
-  text-align: left;
-
-  visibility: hidden;
-  opacity: 0;
-
-  -webkit-transition: opacity 0.4s;
-  -o-transition: opacity 0.4s;
-  -moz-transition: opacity 0.4s;
-  transition: opacity 0.4s;
-}
-
-.alert-validate::after {
-  content: "\f12a";
-  font-family: FontAwesome;
-  display: block;
-  position: absolute;
-  z-index: 110;
-  color: #c80000;
-  font-size: 16px;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%);
-  right: 18px;
-}
-
-.alert-validate:hover:before {
-  visibility: visible;
-  opacity: 1;
-}
-
-@media (max-width: 992px) {
-  .alert-validate::before {
-    visibility: visible;
-    opacity: 1;
-  }
-}
-
-
-
-/*==================================================================
-[ Social ]*/
-.login100-form-social-item {
-  width: 36px;
-  height: 36px;
-  font-size: 18px;
-  color: #fff;
-  border-radius: 50%;
-}
-
-.login100-form-social-item:hover {
-  background: #333333;
-  color: #fff;
 }
