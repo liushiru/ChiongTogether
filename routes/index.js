@@ -8,15 +8,12 @@ const Post = require('../models/Post');
 //Welcome Page
 router.get('/', (req, res) => res.render('../views/welcome'));
 
-//Home Page (without authentication)
-router.get('/home', (req, res) => res.render('home'));
-
 //Home Page (with authentication)
-//router.get('/home', ensureAuthenticated, (req, res) => 
-//  res.render('home', {
-//    user: req.user
-//  })
-//);
+router.get('/home', ensureAuthenticated, (req, res) => 
+  res.render('home', {
+    user: req.user
+  })
+);
 
 //Dashboard
 router.get('/dashboard', ensureAuthenticated, (req, res) =>
