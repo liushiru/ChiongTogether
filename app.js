@@ -48,7 +48,7 @@ app.use(passport.session());
 // Connect flash
 app.use(flash());
 
-//global variables
+//global variables middleware for msg
 app.use((req, res, next) => {
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
