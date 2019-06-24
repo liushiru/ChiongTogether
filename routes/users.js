@@ -15,34 +15,45 @@ router.get('/register', (req, res) => res.render('../views/register'));
 
 //Register Handle
 router.post('/register', (req, res) => {
- 
-    const { name, matricNo, email, password, password2, avatar } = req.body;
+    
+    //pull out info from submit data
+    const { name, matricNo, email, password, password2, year} = req.body;
+    
     let errors = [];
 
     //check required fields
     if(!name || !matricNo || !email || !password || !password2) {
         errors.push({ msg: 'Please fill in all fields'});
     };
-        //check password match
+    //check password match
     if(password !== password2) {
         errors.push({ msg: 'Passwords do not match' });
     }
-
     //Check password length
     if(password.length < 6) {
         errors.push({ msg: 'Password should be at least 6 characters'});
     }
 
     if(errors.length > 0) {
-        res.render('register', {
-            errors,
-            name,
-            matricNo,
-            email,
-            password,
-            password2,
-            avatar
-        });
+        if(password !== password2 || password.length < 6) {
+            res.render('register', {
+                errors,
+                name,
+                matricNo,
+                email,
+                year
+            }); 
+        } else {
+            res.render('register', {
+                errors,
+                name,
+                matricNo,
+                email,
+                password,
+                password2,
+                year
+            });
+        }    
     } else {
         //Validation passed
         User.findOne({ matricNo: matricNo })
@@ -54,11 +65,10 @@ router.post('/register', (req, res) => {
                     res.render('register', {
                         errors,
                         name,
-                        matricNo,
                         email,
                         password,
                         password2,
-                        avatar
+                        year
                     });
                 } else {
                     const newUser = new User({ 
@@ -66,11 +76,9 @@ router.post('/register', (req, res) => {
                         matricNo,
                         email,
                         password,
-                        avatar,
+                        year,
                         post: []
                     });
-                //    console.log(newUser);
-                //    res.send('hello');
 
                     //Hash Password
                     bcrypt.genSalt(10, (err, salt) => 

@@ -24,10 +24,10 @@ const PostSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
-    comment: {
+    comment: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Comment"
-    }
+    }]
 });
 
 PostSchema.plugin(timestamps);
