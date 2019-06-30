@@ -122,7 +122,7 @@
     margin: 15px;
     border-radius: 3px;
 }
-label {
+label.post-title {
     text-align: left;
     color: white;
     font-family: Montserrat-Regular;
