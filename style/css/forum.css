@@ -119,7 +119,12 @@
 .post-content-section-a {
     width: 100%;
     padding: 50px ;
-    background-color: #bfcfca;
     margin: 15px;
     border-radius: 3px;
+}
+label {
+    text-align: left;
+    color: white;
+    font-family: Montserrat-Regular;
+    font-size: 20px;
 }
