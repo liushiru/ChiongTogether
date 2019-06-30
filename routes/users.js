@@ -8,10 +8,10 @@ const User = require('../models/User');
 const Post = require('../models/Post');
 
 //login page
-router.get('/login', (req, res) => res.render('../views/login'));
+router.get('/login', (req, res) => res.render('../views/login/login'));
 
 //Register Page
-router.get('/register', (req, res) => res.render('../views/register'));
+router.get('/register', (req, res) => res.render('../views/login/register'));
 
 //Register Handle
 router.post('/register', (req, res) => {

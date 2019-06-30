@@ -1,0 +1,125 @@
+/*-------------------------------type of post-------------------------------------*/
+.type-header {
+    padding-top: 75px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+    padding-bottom: 75px;
+    text-align: center;
+    color: #e8e8e9;
+    background: url(../images/bg.jpg) no-repeat center center;
+    background-size: cover;
+}
+
+.type-message {
+    position: relative;
+    padding-top: 7%;
+    padding-bottom: 7%;
+}
+
+.type-message > h1 {
+    font-family: Montserrat-Regular;
+    margin-bottom: 30px;
+    font-size: 50px;
+    text-shadow: 2px 2px 3px rgba(76, 86, 129, 0.6);
+}
+
+.type-message > h3 {
+    font-family: Montserrat-Regular;
+    text-shadow: 2px 2px 3px rgba(76, 86, 129, 0.6);
+    padding-bottom: 0;
+}
+
+.type-forum {
+    display: inline-block;
+}
+
+
+@media(max-width:767px) {
+    .type-message {
+        padding-bottom: 15%;
+    }
+
+    .type-message > h1 {
+        font-size: 3em;
+    }
+
+    .type-message > h3 {
+        font-size: 1em;
+    }
+}
+
+/*--------------------------------------Content-----------------------------------------*/
+.type-content-section-a {
+    width: 29%;
+    padding: 50px ;
+    background-color: #bfcfca;
+    margin: 15px;
+    border-radius: 3px;
+}
+
+.type-content-section-a:hover {
+    width: 31%;
+    padding: 50px ;
+    background-color: #f8f8f8;
+    margin: 15px;
+}
+
+.type-section-heading {
+    font-family: Montserrat-Regular;
+    margin-bottom: 20px;
+    color: #586160;
+    font-size: 30px;
+    letter-spacing: 0;
+}
+
+.type-section-heading-spacer {
+    float: left;
+    width: 100px;
+    border-top: 3px solid #4f837f;
+}
+
+.type-lead {
+    font-family: Poppins-Regular;
+    color: #586160;
+    font-size: 15px;
+    text-align: start;
+}
+
+@media(max-width:1000px) {
+    .type-content-section-a {
+        width: 90%;
+        padding: 30px ;
+        background-color: #bfcfca;
+        margin: 15px;
+        border-radius: 3px;
+    }
+
+    .type-content-section-a:hover {
+        width: 100%;
+        padding: 30px ;
+        background-color: #f8f8f8;
+        margin: 15px;
+        border-radius: 3px;
+    }
+
+    .type-lead {
+        font-family: Poppins-Regular;
+        color: #586160;
+        font-size: 15px;
+    }
+
+    .type-section-heading {
+        font-family: Montserrat-Regular;
+        margin-bottom: 20px;
+        color: #586160;
+        font-size: 25px;
+        letter-spacing: 0;
+    }
+}
+
+/*------------------------------------Post-----------------------------------------*/
+.post-content-section-a {
+    width: 100%;
+    padding: 50px ;
+    background-color: #bfcfca;
+    margin: 15px;
+    border-radius: 3px;
+}
