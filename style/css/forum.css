@@ -128,3 +128,21 @@ label.post-title {
     font-family: Montserrat-Regular;
     font-size: 20px;
 }
+
+/*------------------------------------Forum---------------------------------------------*/
+.forum-content-section-a {
+    width: 100%;
+    padding: 50px ;
+    margin: 15px;
+    border-radius: 3px;
+}
+
+div.forum-li {
+    background-color: #f8f8f8;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+div.forum-li:hover {
+    background-color: #4f837f;
+}
