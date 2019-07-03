@@ -8,7 +8,7 @@ const Post = require('../models/Post');
 const Comment = require('../models/Comment');
 
 //main forum
-router.get('/', ensureAuthenticated,(req, res) => {
+router.get('/', (req, res) => {
   /*  Post.find({}, (err, posts) => {
       var postMap= {};
       posts.forEach((post) => {
@@ -65,6 +65,33 @@ router.post('/studyPost', ensureAuthenticated, (req, res) => {
     console.log(req.user);
 });
 
+
+function getPostInfo (post, author, res) {
+  let comments = [];
+  if (post.comment.length === 0) {
+    res.render('../views/forum/singleForum', {
+      post,
+      author,
+      comments
+    });
+  } else {
+    for (var i=0; i<post.comment.length; i++) {
+      Comment.findById(post.comment[i], (err, comment) => {
+        User.findById(comment.author, (err, commentor) => {
+          comments.push({commentor: commentor, content: comment.content});
+          if (comments.length === post.comment.length) {
+            res.render('../views/forum/singleForum', {
+              post: post,
+              author: author,
+              comments: comments
+            });
+            
+          }
+        });
+      });
+    }
+  }
+}
 //enter one post
 router.get('/:id', (req, res) => {
   Post.findOne({_id: req.params.id}, (err, post) => {
@@ -75,10 +102,7 @@ router.get('/:id', (req, res) => {
         if (err) {
           res.send(err);
         } else {
-          res.render('../views/forum/singleForum', {
-            post: post,
-            author: author
-          });
+          getPostInfo(post, author, res);
         }
       });      
     }

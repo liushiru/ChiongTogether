@@ -99,7 +99,8 @@
                                         <% for(var i=0; i<user.post.length; i++) { %>
                                             <ul>
                                                 <li> 
-                                                    <a href=""> <%= user.post[i] %> </a>                                                    
+                                                    <a href=""> <%= user.post[i] %> </a>
+                                                    <a href="/users/:user.post[i]"> delete</a>                                                    
                                                 </li>
                                             </ul>
                                         <% } %>

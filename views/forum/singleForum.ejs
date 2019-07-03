@@ -29,7 +29,7 @@
       <div class="col-lg-8">
 
         <!-- Title -->
-        <h1 class="mt-4">Post Title: <%= post.title %></h1>
+        <h1 class="mt-4"><%= post.title %></h1>
 
         <!-- Author -->
         <p class="lead">
@@ -74,12 +74,16 @@
         </div>
 
         <!-- Single Comment -->
-        <% for(var i=0; i<2; i++) {%>
+        <% for(var i=0; i<post.comment.length; i++) { %>
         <div class="media mb-4">
           <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
           <div class="media-body">
-            <h5 class="mt-0"><%= post %></h5>
-            <%= post %>
+            <% var name = JSON.stringify(comments[i].commentor.name); %>
+            <% var prettyName = JSON.parse(name); %>
+            <% var content = JSON.stringify(comments[i].content); %>
+            <% var prettyContent = JSON.parse(content); %>
+            <h5 class="mt-0"><%= prettyName %></h5>
+            <%= prettyContent %>
           </div>
         </div>
         <% } %>

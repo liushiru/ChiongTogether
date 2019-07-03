@@ -188,8 +188,8 @@ router.put('/change', async (req, res) => {
 });
 
 
-router.delete("/:matricNo", (req, res) => {
-
+router.delete("/:id", (req, res) => {
+    res.send('delete');
 });
 
 module.exports = router;
