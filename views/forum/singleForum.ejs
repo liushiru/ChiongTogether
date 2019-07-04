@@ -82,7 +82,7 @@
             <% var prettyName = JSON.parse(name); %>
             <% var content = JSON.stringify(comments[i].content); %>
             <% var prettyContent = JSON.parse(content); %>
-            <h5 class="mt-0"><%= prettyName %></h5>
+            <h5 class="mt-0"><a href='/users/<%= comments[i].commentor.matricNo%>'><%= prettyName %></a></h5>
             <%= prettyContent %>
           </div>
         </div>

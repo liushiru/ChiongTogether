@@ -85,7 +85,6 @@ function getPostInfo (post, author, res) {
               author: author,
               comments: comments
             });
-            
           }
         });
       });
@@ -138,13 +137,8 @@ router.put('/addComment', ensureAuthenticated, async (req, res) => {
       if(err) throw err;
     });
 
-  res.send('okay');
-    // res.render('../views/forum/singleForum', {
-    //   post: a_post,
-    //   author: author
-    // });
-    // console.log(a_post);
-    
+  res.redirect('back');
+      
 });
 
 module.exports = router;

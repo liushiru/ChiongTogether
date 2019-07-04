@@ -134,22 +134,41 @@ router.get('/logout', (req, res) => {
 
 
 //trying to pass in all the posts the user have
-router.get("/:matricNo", ensureAuthenticated, (req, res, next) =>{
-    let post = [];
-    for( var i=0; i < req.user.post.length; i++) {
-        Post.findById(req.user.post[i]);
-        //console.log('post[i]:') 
-        //console.log(post[i]);
-        console.log('findByIddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd')
-        //console.log(req.user.post[i]);
-        //console.log(Post.findById(req.user.post[i]));
-
-    }
-    res.render('../views/profile/show', {
-      user: req.user
+router.get("/:matricNo", (req, res, next) =>{
+    let posts = [];
+    console.log(req.params);
+    const matricNo = req.params.matricNo;
+    const edit = (req.user.matricNo === matricNo);
+    User.findOne({matricNo: matricNo}, (err, user) => {
+        if (err) {
+            res.send(err);
+        } else {
+            if (user.comment.length === 0) {
+                res.render('../views/profile/show', {
+                    user,
+                    posts,
+                    edit
+                });
+            } else {
+                for(let i=0; i<user.post.length; i++) {
+                    Post.findById(user.post[i], (err, post) => {
+                        if (err) {
+                            res.send(err);
+                        } else {
+                            posts.push({id: post.id, title: post.title});
+                            if (posts.length === user.post.length) {
+                                res.render('../views/profile/show', {
+                                    user,
+                                    posts,
+                                    edit
+                                });
+                            }
+                        }
+                    });
+                }
+            }
+        }
     });
-    //console.log('post: post');
-    //console.log(post);
   });
 
 

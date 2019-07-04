@@ -38,8 +38,9 @@
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
-                        <a href="/users/<%= user.matricNo %>/edit"> edit </a>
+                        <% if (edit) { %>
+                            <a href="/users/<%= user.matricNo %>/edit"> edit </a>
+                        <% } %>
                         <!-- <form method="POST" action="/users/<%= user.matricNo %>?_method=DELETE">
                             <button type="submit">Delete</button>
                         </form>  -->
@@ -99,7 +100,7 @@
                                         <% for(var i=0; i<user.post.length; i++) { %>
                                             <ul>
                                                 <li> 
-                                                    <a href=""> <%= user.post[i] %> </a>
+                                                    <a href="/forum/<%= posts[i].id %>"> <%= posts[i].title %> </a>
                                                     <a href="/users/:user.post[i]"> delete</a>                                                    
                                                 </li>
                                             </ul>
