@@ -52,7 +52,7 @@ a {
 	font-family: Poppins-Regular;
 	font-size: 14px;
 	line-height: 1.7;
-	color: #666666;
+	color: #e8e8e9;
 	margin: 0px;
 	transition: all 0.4s;
 	-webkit-transition: all 0.4s;
@@ -66,9 +66,12 @@ a:focus {
 
 a:hover {
 	text-decoration: none;
-  color: #6972b6;
+  color: #abd1c3;
 }
 
+.have-account{
+  color:#666666;
+}
 /*---------------------------------------------*/
 h1,h2,h3,h4,h5,h6 {
 	margin: 0px;
@@ -234,8 +237,6 @@ iframe {
   left: 0;
   background: rgba(0,0,0,0.1);
 }
-
-
 
 /*---------------------- Form ------------------------*/
 

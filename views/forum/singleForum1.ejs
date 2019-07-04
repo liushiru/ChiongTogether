@@ -1,0 +1,115 @@
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <!--name-->
+    <a class="navbar-brand js-scroll-trigger" href="/home">Chiong Together</a>
+    
+    <!--Menu Button-->
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fa fa-bars fa-fw"></i>
+      Menu
+    </button>
+
+    <!--nav bar-->
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="/forum/startJio">Start a Jio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="/forum">Forum</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#">Study Clique</a>
+        </li>
+        <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#">Focus</a>
+            </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="/dashboard">My Account</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="/users/logout">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Post Content Column -->
+      <div class="col-lg-8">
+
+        <!-- Title -->
+        <h1 class="mt-4">Post Title: <%= post.title %></h1>
+
+        <!-- Author -->
+        <p class="lead">
+          <a href="/users/<%= author.matricNo %>"><%= author.name %></a>
+        </p>
+
+        <hr>
+
+        <!-- Date/Time -->
+        <p>Posted on: <%= post.createdAt %></p>
+
+        <hr>
+
+        <!-- Preview Image -->
+        <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+
+        <hr>
+
+        <!-- Post Content -->
+        <p class="lead"><%= post.content %></p>
+
+        <hr>
+
+        <!-- Comments Form -->
+        <div class="card my-4">
+          <h5 class="card-header">Leave a Comment:</h5>
+          <div class="card-body">
+            <form action="/forum/addComment?_method=PUT" method="POST">
+              <div class="form-group">
+                <textarea 
+                  class="form-control" 
+                  rows="3"
+                  type="comment"
+                  id="comment"
+                  name="comment"
+                ></textarea>
+                <input type="hidden" id="postId" name="postId" value="<%= post.id %>">
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Single Comment -->
+        <% for(var i=0; i<2; i++) {%>
+        <div class="media mb-4">
+          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+          <div class="media-body">
+            <h5 class="mt-0"><%= post %></h5>
+            <%= post %>
+          </div>
+        </div>
+        <% } %>
+      </div>
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Shiru & Yuxuan 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>

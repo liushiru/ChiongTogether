@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
       <!--name-->
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">Chiong Together</a>
+      <a class="navbar-brand js-scroll-trigger" href="/home">Chiong Together</a>
       
       <!--Menu Button-->
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,43 +34,42 @@
         </ul>
       </div>
     </div>
-  </nav>
+</nav>
   
-  <!-- Header -->
-  <div class="type-header">
-    <div class="container">
-        <div class="row">
-  <!------------------------------------------------------------------------------------------------------------------->
-            <div class="col-lg-12">
-                <div class="type-message">
+<!-- Header -->
+<div class="type-header">
+  <div class="container">
+    <div class="row">
+<!------------------------------------------------------------------------------------------------------------------->
+      <div class="col-lg-12">
+        <div class="type-message">
   
-                    <h1>Start A Jio</h1>
-                    <h3>Fill in some information and find your study buddies :)</h3>
+          <h1>Start A Jio</h1>
+          <h3>Fill in some information and find your study buddies :)</h3>
                     
-                </div>   
-            </div>
+        </div>   
+      </div>
   <!--------------------------------------------------------->
-  <div class="forum-content-section-a">
-    <div class="container">
-        <div class="row">
+      <div class="forum-content-section-a">
+        <div class="container">
+          <div class="row">
 
             <div class="col-md-12">
                 <!-- <p>Your detail description</p> -->
-                <% for(var i=0; i<posts.length; i++) { %> 
-                            <a href="/forum/<%= posts[i].id %>"> 
-                              <div class="forum-li">
-                              <%= posts[i].title %> 
-                              </div>
-                            </a>
-                <% } %>
+              <% for(var i=0; i<posts.length; i++) { %> 
+                <a href="/forum/<%= posts[i].id %>"> 
+                  <div class="forum-li">
+                    <%= posts[i].title %> 
+                  </div>
+                </a>
+              <% } %>
             </div>
             
-        </div>
-    </div>
-  </div>
-  
-          
-  
+          </div>
         </div>
       </div>
+  
+          
     </div>
+  </div>
+</div>

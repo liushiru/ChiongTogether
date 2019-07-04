@@ -146,3 +146,38 @@ div.forum-li {
 div.forum-li:hover {
     background-color: #4f837f;
 }
+
+/*------------------------------------Single----------------------------------------------*/
+.single-message {
+    position: relative;
+    padding-top: 7%;
+    padding-bottom: 30px;
+}
+
+.single-message > h1 {
+    font-family: Montserrat-Regular;
+    margin-bottom: 30px;
+    font-size: 50px;
+    text-shadow: 2px 2px 3px rgba(76, 86, 129, 0.6);
+}
+
+.single-message > h3 {
+    font-family: Montserrat-Regular;
+    font-size:20px;
+    padding-bottom: 10px;
+}
+
+.single-content-section-a {
+    width: 100%;
+    padding: 20px ;
+    margin: 15px;
+    border-radius: 3px;
+    background: white;
+    opacity: 0.7;
+}
+
+.single-row > p {
+    font-family: Montserrat-Regular;
+    font-size: 20px;
+    columns: #666666;
+}
