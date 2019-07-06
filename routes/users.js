@@ -6,6 +6,8 @@ const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 // Uswer model
 const User = require('../models/User');
 const Post = require('../models/Post');
+const Comment = require('../models/Comment');
+
 
 //login page
 router.get('/login', (req, res) => res.render('../views/login/login'));
@@ -133,17 +135,16 @@ router.get('/logout', (req, res) => {
   });
 
 
-//trying to pass in all the posts the user have
+//
 router.get("/:matricNo", (req, res, next) =>{
     let posts = [];
-    console.log(req.params);
     const matricNo = req.params.matricNo;
     const edit = (req.user.matricNo === matricNo);
     User.findOne({matricNo: matricNo}, (err, user) => {
         if (err) {
             res.send(err);
         } else {
-            if (user.comment.length === 0) {
+            if (user.post.length === 0) {
                 res.render('../views/profile/show', {
                     user,
                     posts,
@@ -177,7 +178,8 @@ router.get("/:matricNo/edit", async (req, res) => {
         const user = User.findById(req.params.matricNo)
         res.render('../views/profile/edit', { user : user })
     } catch {
-        res.redirect(':matricNo');
+        //res.redirect(':matricNo');
+        res.send('its an error')
     }
 });
 
@@ -186,6 +188,7 @@ router.put('/change', async (req, res) => {
     try {
 
         user = await User.findById(req.user.id);
+        console.log(`/change/ ${user}`);
         user.name = req.body.name;
         console.log(req.body);
         await user.save();
@@ -206,9 +209,79 @@ router.put('/change', async (req, res) => {
     }    
 });
 
+//delete post
+router.delete("/:id", async (req, res) => {
+    let postToDelete;
+    try {
+ /*       postToDelete = await Post.findById(req.params.id);
+        //array of comment id under the post
+        let comments = postToDelete.comment;
+        console.log(comments);
+        
+        //Delete otherUser.comment
+        for(var i=0; i<comments.length; i++) {
+            console.log('line 221 enter for loop')
+            await Comment.findById(postToDelete.comment[i], (err, comment) => {
+                if (err) {
+                    console.log(err)
+                } else {
+                    console.log(`did you find the comment or not ${comment}`);
+                    User.findByIdAndUpdate(comment.author, 
+                        {"$pull": {"comment": comments[i]}});
+                }
+                console.log('line228');
+            });
+        }
 
-router.delete("/:id", (req, res) => {
-    res.send('delete');
+        //Delete Comments
+        for(var i=0; i<comments.length; i++) {
+            Comments.findByIdAndDelete(comments[i]);
+            console.log(`i = ${i}`);
+        }
+        
+        //Delete user.post
+        User.findByIdAndUpdate(req.user.id,
+                {"$pull": {"post": req.params.id}});
+        console.log('line 241');
+        //Delete Post
+        Post.findByIdAndDelete(req.params.id);
+        console.log('line244');
+        res.redirect('back');   */
+
+        Post.findById(req.params.id, (err, post) => {
+            for(var i=0; i<post.comment.length; i++) {
+                Comment.findById(post.comment[i], (err, comment) => {
+                    if (err) {
+                        console.log(err)
+                    } else {
+                        //did not pull
+                        User.findByIdAndUpdate(comment.author, 
+                            {"$pull": {"comment": post.comment[i]}});
+                    }
+                    console.log('line261');
+                });
+            }
+
+            //Delete Comments
+            for(var i=0; i<post.comment.length; i++) {
+                Comment.findByIdAndDelete(post.comment[i]);
+                console.log(`i = ${i}`);
+            }
+        });
+        //array of comment id under the post
+        //Delete user.post
+        User.findByIdAndUpdate(req.user.id,
+                {"$pull": {"post": req.params.id}});
+        console.log('line 241');
+        //Delete Post
+        Post.findByIdAndDelete(req.params.id);
+        console.log('line244');
+        res.redirect('back');   
+    } catch {
+        if (postToDelete === null) {
+            res.send('null');
+        }
+    }
 });
 
 module.exports = router;
