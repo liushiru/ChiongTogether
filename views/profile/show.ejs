@@ -101,7 +101,12 @@
                                             <ul>
                                                 <li> 
                                                     <a href="/forum/<%= posts[i].id %>"> <%= posts[i].title %> </a>
-                                                    <a href="/users/:user.post[i]"> delete</a>                                                    
+                                                    <!--Delete-->
+                                                    <% if (edit) { %>
+                                                        <%- include('../partials/delete_post', 
+                                                                    { url: `/users/${posts[i].id}` }) %>
+                                                    <% } %>
+                                                                                                      
                                                 </li>
                                             </ul>
                                         <% } %>
