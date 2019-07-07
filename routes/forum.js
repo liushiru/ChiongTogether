@@ -91,6 +91,7 @@ function getPostInfo (post, author, res) {
     }
   }
 }
+
 //enter one post
 router.get('/:id', (req, res) => {
   Post.findOne({_id: req.params.id}, (err, post) => {
