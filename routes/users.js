@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
+var mongoose = require('mongoose');
 // Uswer model
 const User = require('../models/User');
 const Post = require('../models/Post');
@@ -252,30 +253,51 @@ router.delete("/:id", async (req, res) => {
             for(var i=0; i<post.comment.length; i++) {
                 Comment.findById(post.comment[i], (err, comment) => {
                     if (err) {
-                        console.log(err)
+                        console.log(`line 256${err}`);
                     } else {
                         //did not pull
-                        User.findByIdAndUpdate(comment.author, 
-                            {"$pull": {"comment": post.comment[i]}});
+                       // console.log(comment);
+                        const commentAuthorID = mongoose.mongo.ObjectID(comment.author);
+                        const commentID = mongoose.mongo.ObjectID(post.comment[i])
+                        User.findOneAndUpdate({_id: commentAuthorID}, 
+                            {"$pull": {comment: commentID}},
+                            (err, user) => {
+                                if (err) {
+                                    console.log(`line 266 ${err}`);
+                                } else {
+                                    console.log(`line 268 ${user}`);
+                                }
+                            });
                     }
-                    console.log('line261');
                 });
             }
 
             //Delete Comments
             for(var i=0; i<post.comment.length; i++) {
-                Comment.findByIdAndDelete(post.comment[i]);
-                console.log(`i = ${i}`);
+                const commentID = mongoose.mongo.ObjectID(post.comment[i])
+                Comment.findByIdAndDelete(commentID, (err, comment) => {
+                    if (err) console.log(`279 ${err}`);
+                    console.log(comment)
+                });
             }
         });
-        //array of comment id under the post
         //Delete user.post
-        User.findByIdAndUpdate(req.user.id,
-                {"$pull": {"post": req.params.id}});
-        console.log('line 241');
+        const userID = mongoose.mongo.ObjectID(req.user.id);
+        const postID = mongoose.mongo.ObjectID(req.params.id);
+        User.findByIdAndUpdate(userID,
+                {"$pull": {"post": postID}},
+                (err, user) => {
+                    if (err) console.log(`290 ${err}`);
+                    else console.log(`291 ${user}`);
+                });
         //Delete Post
-        Post.findByIdAndDelete(req.params.id);
-        console.log('line244');
+        Post.findByIdAndDelete(postID, (err, post) => {
+            if (err) {
+                console.log(`296 ${err}`);
+            } else {
+                console.log(`298 ${post}`);
+            }
+        });
         res.redirect('back');   
     } catch {
         if (postToDelete === null) {
