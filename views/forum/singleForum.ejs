@@ -40,16 +40,16 @@
   <div class="type-header">
     <div class="container">
         <div class="row">
-  <!------------------------------------------------------------------------------------------------------------------->
+  <!----------------------------------title--------------------------------------------------------------------------------->
             <div class="col-lg-12">
                 <div class="single-message">
   
                     <h1><%= post.title %></h1>
                     <h3 href="/users/<%= author.matricNo %>">Posted by: <%= author.name %></h3>
-                    <h3>Posted on: <%= post.createdAt %></h3>
+                    <h3>Posted on: <%= post.createdAt.toString().slice(4,24) %></h3>
                 </div>   
             </div>
-  <!--------------------------------------------------------->
+  <!-------------------------------content-------------------------->
             <div class="single-content-section-a">
                 <div class="container">
                     <div class="single-row">
@@ -57,32 +57,36 @@
                     </div>
                 </div>
             </div>
-  
-          
+  <!--------------------------------write comment------------------------>          
+            
+          <h5 class='comment-title'>Leave a Comment:</h5>
+          <form action="/forum/addComment?_method=PUT" method="POST"></form>
+            <textarea 
+            class="single-content-section-b" 
+            rows="3"
+            type="comment"
+            id="comment"
+            name="comment"
+            placeholder="Have any question? You can leave in comment."
+            ></textarea>
+            <input type="hidden" id="postId" name="postId" value="<%= post.id %>">
+            <button type="submit" class="comment-btn">Submit</button>
+          </form> 
   
         </div>
     </div>
 </div>
  
- <!-- Comments Form -->
- <div>
-  <h5>Leave a Comment:</h5>
-
-  <div class="card-body">
-    <form action="/forum/addComment?_method=PUT" method="POST">
-      <div class="form-group">
-        <textarea 
-          class="form-control" 
-          rows="3"
-          type="comment"
-          id="comment"
-          name="comment"
-        ></textarea>
-        <input type="hidden" id="postId" name="postId" value="<%= post.id %>">
+<!-------------------------------comment------------------------------------>
+<% for(var i=0; i<post.comment.length>; i++) { %>
+    <div class="media mb-4">
+      <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+      <div class="media-body">
+        <% var name = JSON.stringify(comments[i].commentor.name); %>
+        <% var prettyName = JSON.parse(name); %>
+        <% var content = JSON.stringify(comments[i].content); %>
+        <% var prettyContent = JSON.parse(content); %>
+        <h5 class="mt-0"><a href='/users/<%= comments[i].commentor.matricNo%>'><%= prettyName %></a></h5>
+        <%= prettyContent %>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-  </div>
-  
-</div>
-
+    </div>
