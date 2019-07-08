@@ -45,7 +45,7 @@
                 <div class="single-message">
   
                     <h1><%= post.title %></h1>
-                    <h3 href="/users/<%= author.matricNo %>">Posted by: <%= author.name %></h3>
+                    <h3>Posted by: <a href="/users/<%= author.matricNo %>"><%= author.name %></a></h3>
                     <h3>Posted on: <%= post.createdAt.toString().slice(4,24) %></h3>
                 </div>   
             </div>
@@ -57,10 +57,14 @@
                     </div>
                 </div>
             </div>
+            <div class="single-content-section-c">
+              <a class='join-btn' href="/users/<%= author.matricNo %>">I want to join</a>
+            </div>
+            
   <!--------------------------------write comment------------------------>          
             
           <h5 class='comment-title'>Leave a Comment:</h5>
-          <form action="/forum/addComment?_method=PUT" method="POST"></form>
+          <form class="single-content-section-c" action="/forum/addComment?_method=PUT" method="POST">
             <textarea 
             class="single-content-section-b" 
             rows="3"
@@ -77,16 +81,22 @@
 </div>
  
 <!-------------------------------comment------------------------------------>
-<% for (var i=0; i<post.comment.length; i++) { %>
-    <div class="media mb-4">
-      <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-      <div class="media-body">
-        <% var name = JSON.stringify(comments[i].commentor.name); %>
-        <% var prettyName = JSON.parse(name); %>
-        <% var content = JSON.stringify(comments[i].content); %>
-        <% var prettyContent = JSON.parse(content); %>
-        <h5 class="mt-0"><a href='/users/<%= comments[i].commentor.matricNo%>'><%= prettyName %></a></h5>
-        <%= prettyContent %>
-      </div>
-    </div>
-<% } %>
+        <% for(var i=0; i<post.comment.length; i++) { %>
+            <div class="comment-section-<%=(i%2)%>">
+                <div class="container">
+                    <div class="row">
+          <div class="media mb-4">
+            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+            <div class="media-body">
+              <% var name = JSON.stringify(comments[i].commentor.name); %>
+              <% var prettyName = JSON.parse(name); %>
+              <% var content = JSON.stringify(comments[i].content); %>
+              <% var prettyContent = JSON.parse(content); %>
+              <h5 class="mt-0"><a href='/users/<%= comments[i].commentor.matricNo%>'><%= prettyName %></a></h5>
+              <%= prettyContent %>
+            </div>
+          </div>
+                </div>
+              </div>
+            </div>
+          <% } %>
