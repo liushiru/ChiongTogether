@@ -263,7 +263,7 @@ router.delete("/:id", async (req, res) => {
                             {"$pull": {comment: commentID}},
                             (err, user) => {
                                 if (err) {
-                                    console.log(`line 266 ${err}`);
+                                    console.log(err);
                                 } else {
                                     console.log(`line 268 ${user}`);
                                 }
@@ -276,7 +276,7 @@ router.delete("/:id", async (req, res) => {
             for(var i=0; i<post.comment.length; i++) {
                 const commentID = mongoose.mongo.ObjectID(post.comment[i])
                 Comment.findByIdAndDelete(commentID, (err, comment) => {
-                    if (err) console.log(`279 ${err}`);
+                    if (err) console.log(err);
                     console.log(comment)
                 });
             }

@@ -80,7 +80,7 @@ function getPostInfo (post, author, res) {
         User.findById(comment.author, (err, commentor) => {
           comments.push({commentor: commentor, content: comment.content});
           if (comments.length === post.comment.length) {
-            res.render('../views/forum/singleForum', {
+            res.render('../views/forum/singleForum1', {
               post: post,
               author: author,
               comments: comments
@@ -112,6 +112,7 @@ router.get('/:id', (req, res) => {
 //add comment
 router.put('/addComment', ensureAuthenticated, async (req, res) => {
   //Handle comment
+  console.log("are you coming hereeee?")
   const newComment = new Comment({
     content: req.body.comment, 
     author: req.user

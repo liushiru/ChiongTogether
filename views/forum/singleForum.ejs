@@ -72,13 +72,12 @@
             <input type="hidden" id="postId" name="postId" value="<%= post.id %>">
             <button type="submit" class="comment-btn">Submit</button>
           </form> 
-  
         </div>
     </div>
 </div>
  
 <!-------------------------------comment------------------------------------>
-<% for(var i=0; i<post.comment.length>; i++) { %>
+<% for (var i=0; i<post.comment.length; i++) { %>
     <div class="media mb-4">
       <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
       <div class="media-body">
@@ -90,3 +89,4 @@
         <%= prettyContent %>
       </div>
     </div>
+<% } %>
