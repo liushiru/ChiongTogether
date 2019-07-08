@@ -191,7 +191,7 @@ div.forum-li:hover {
 }
 
 .single-content-section-b {
-    width: 100%;
+    width: 95%;
     padding: 20px ;
     margin: 15px;
     border-radius: 3px;
@@ -206,6 +206,7 @@ div.forum-li:hover {
 
 .single-content-section-c {
     width:100%;
+    padding-right: 10px;
 }
 .comment-btn{
     padding: 0 20px;
@@ -225,6 +226,38 @@ div.forum-li:hover {
     letter-spacing: 2px;
 }
 
+.join-btn{
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    margin: 40px 0 20px 0;
+    width: 50%;
+    height: 50px;
+    border-radius: 10px;
+    background: #9abebc;
+
+    font-family: Montserrat-Bold;
+    font-size: 14px;
+    color: rgb(63, 62, 62);
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.join-btn:hover{
+    background: #64a19d;
+}
+
 .comment-btn:hover{
     background-color: #64a19d;
+}
+
+.comment-section-1{
+    background-color:#e3eceb;
+    padding: 20px;
+}
+
+.comment-section-0{
+    background-color: #f8f8f8;
+    padding: 20px;
 }
