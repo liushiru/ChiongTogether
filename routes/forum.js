@@ -80,7 +80,7 @@ function getPostInfo (post, author, res) {
         User.findById(comment.author, (err, commentor) => {
           comments.push({commentor: commentor, content: comment.content});
           if (comments.length === post.comment.length) {
-            res.render('../views/forum/singleForum1', {
+            res.render('../views/forum/singleForum', {
               post: post,
               author: author,
               comments: comments

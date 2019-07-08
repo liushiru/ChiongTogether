@@ -60,7 +60,7 @@
   <!--------------------------------write comment------------------------>          
             
           <h5 class='comment-title'>Leave a Comment:</h5>
-          <form action="/forum/addComment?_method=PUT" method="POST"></form>
+          <form class="single-content-section-c" action="/forum/addComment?_method=PUT" method="POST">
             <textarea 
             class="single-content-section-b" 
             rows="3"
@@ -77,16 +77,24 @@
 </div>
  
 <!-------------------------------comment------------------------------------>
-<% for (var i=0; i<post.comment.length; i++) { %>
-    <div class="media mb-4">
-      <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-      <div class="media-body">
-        <% var name = JSON.stringify(comments[i].commentor.name); %>
-        <% var prettyName = JSON.parse(name); %>
-        <% var content = JSON.stringify(comments[i].content); %>
-        <% var prettyContent = JSON.parse(content); %>
-        <h5 class="mt-0"><a href='/users/<%= comments[i].commentor.matricNo%>'><%= prettyName %></a></h5>
-        <%= prettyContent %>
+<div class="content-section-a">
+  <div class="container">
+      <div class="row">
+
+        <% for(var i=0; i<post.comment.length; i++) { %>
+          <div class="media mb-4">
+            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+            <div class="media-body">
+              <% var name = JSON.stringify(comments[i].commentor.name); %>
+              <% var prettyName = JSON.parse(name); %>
+              <% var content = JSON.stringify(comments[i].content); %>
+              <% var prettyContent = JSON.parse(content); %>
+              <h5 class="mt-0"><a href='/users/<%= comments[i].commentor.matricNo%>'><%= prettyName %></a></h5>
+              <%= prettyContent %>
+            </div>
+          </div>
+          <% } %>
+
       </div>
-    </div>
-<% } %>
+  </div>
+</div>

@@ -204,14 +204,18 @@ div.forum-li:hover {
     line-height: 2.5;
 }
 
+.single-content-section-c {
+    width:100%;
+}
 .comment-btn{
     padding: 0 20px;
     margin-left: 15px;
-    margin-top:20px;
+    margin-top:10px;
     width: 20%;
     height: 50px;
     border-radius: 10px;
     background: #9abebc;
+    float: left;
     
     font-family: Montserrat-Bold;
     font-size: 14px;
