@@ -6,11 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <title>MongoChat</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
     <style>
         #messages{height:300px;}
     </style>
 </head>
 <body>
+    <script src="chat.js"></script>
+    <script>
+        var socket = io.connect('http://localhost:5000')
+    </script>
     <input type="hidden" id="recipient" name="recipient" value= "<%= recipient %>">
     <div class="container">
         <div class="row">

@@ -19,13 +19,8 @@ router.post('/:conversationId', ensureAuthenticated, ChatController.sendReply);
 // Get the page for new convo
 router.get('/new/:recipient', ensureAuthenticated, (req, res) => {
     var receiver = JSON.stringify(req.params.recipient)
-    console.log('receiver');
-    console.log(receiver);
-    console.log('prams');
-    console.log(req.params.recipient);
-
     res.render('../views/chat/newChat', {
-        recipient: receiver
+        recipient: req.params.recipient
     });
 })
 

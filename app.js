@@ -7,6 +7,7 @@ const session = require('express-session');
 const passport = require('passport');
 const app = express();
 const methodOverride = require('method-override');
+var path = require('path'); 
 const socketEvents = require('./socketEvents');
 
 //Passport config
@@ -25,8 +26,9 @@ mongoose.connect(db, { useNewUrlParser: true})
 //EJS
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
-
+ 
 //Static
+app.use(express.static(path.join(__dirname, './views/chat')));
 app.use('/style', express.static('style'));
 
 //methodOverride
@@ -71,9 +73,26 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 
+var socket = require("socket.io")
+
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, console.log(`Server started on port ${PORT}`));
-const io = require('socket.io').listen(5001);
-socketEvents(io);
+var server = app.listen(PORT, console.log(`Server started on port ${PORT}`));
+
+
+//const io = require('socket.io').listen(server);
+
+var io = socket(server);
+//app.use(express.static('./views/chat'));
+
+app.use(express.static(path.join(__dirname, 'views/chat')));
+//listen on every connection
+io.on('connection', (soc) => {
+    console.log('New user connected');
+})
+
+
+
+//socketEvents(io);
+
 
