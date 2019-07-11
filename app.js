@@ -7,6 +7,7 @@ const session = require('express-session');
 const passport = require('passport');
 const app = express();
 const methodOverride = require('method-override');
+const socketEvents = require('./socketEvents');
 
 //Passport config
 require('./config/passport')(passport);
@@ -60,6 +61,7 @@ app.use((req, res, next) => {
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
 app.use('/forum', require('./routes/forum'));
+app.use('/chat', require('./routes/chat'))
 
 //Body-parser
 // parse application/x-www-form-urlencoded
@@ -72,4 +74,6 @@ app.use(bodyParser.json())
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, console.log(`Server started on port ${PORT}`));
+const io = require('socket.io').listen(5001);
+socketEvents(io);
 

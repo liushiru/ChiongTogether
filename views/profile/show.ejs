@@ -16,6 +16,11 @@
                                         <%= user.name %>
                                     </h5>
                                     <h6>
+                                        <% if(!edit) { %>
+                                            <a href="/chat/new/<%= user._id %>">Chat with her</a>
+                                        <% } %>
+                                    </h6>
+                                    <h6>
                                         Undergraduates
                                     </h6>
                                     <p class="proile-rating">Year : <span>1</span></p>
