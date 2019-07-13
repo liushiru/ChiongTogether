@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,11 +11,7 @@
     </style>
 </head>
 <body>
-    <script src="chat.js"></script>
-    <script>
-        var socket = io.connect('http://localhost:5000')
-    </script>
-    <input type="hidden" id="recipient" name="recipient" value= "<%= recipient %>">
+    
     <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3 col-sm-12">
@@ -26,19 +21,45 @@
                 </h1>
                 <div id="status"></div>
                 <div id="chat">
-                    <!-- <input type="text" id="username" class="form-control" placeholder="Enter name..."> -->
                     <br>
-                    <div class="card">
-                        <div id="messages" class="card-block">
+                    <div id = "chat-window" class="card">
+                        <div id="output" class="card-block">
                         </div>
                     </div>
                     <br>
-                    <form action="/chat/newChat" method="POST">
-                        <input type="hidden" id="recipient" name="recipient" value="<%= recipient %>">
-                        <textarea id="" class="form-control" type="message" id="message" name="message" placeholder="Enter message..."></textarea>
-                        <button type="submit" class="btn btn-primary">Send</button>
-                    </form>
+                    <!-- <form action="/chat/newChat" method="POST"> -->
+                    <input type="hidden" id="receiver" name="receiver" value="<% recipient %>">
+                        <textarea id="message" class="form-control" type="message" name="message" placeholder="Enter message..."></textarea>
+                        <button id="send" type="submit" class="btn btn-primary">Send</button>
+                    <!-- </form> -->
                 </div>
             </div>
         </div>
     </div>
+    <% var name = recipient %>
+    
+    <script>
+        var socket = io.connect('http://localhost:5000');
+
+        var receiver = document.getElementById('receiver');
+        var output = document.getElementById('output');
+        var btn = document.getElementById('send');
+        var message = document.getElementById('message');
+
+        // Emit events
+
+        btn.addEventListener('click', function(){
+            socket.emit('chat', {
+                message: message.value
+                // recipient: receiver.value
+            });
+            
+            // Listen for events
+        });
+        socket.on('chat', function(data){
+            output.innerHTML += '<p><strong>' + "<%= sender %>" + ':</strong>' + data.message + '</p>'
+        });
+
+        
+    </script>
+</body>

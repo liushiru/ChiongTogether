@@ -20,8 +20,10 @@ router.post('/:conversationId', ensureAuthenticated, ChatController.sendReply);
 router.get('/new/:recipient', ensureAuthenticated, (req, res) => {
     var receiver = JSON.stringify(req.params.recipient)
     res.render('../views/chat/newChat', {
-        recipient: req.params.recipient
+        recipient: req.params.recipient,
+        sender: req.user.name
     });
+    console.log(req.user.name);
 })
 
 module.exports = router;

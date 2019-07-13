@@ -116,12 +116,12 @@ exports.sendReply = function(req, res, next) {
 
     reply.save(function(err, sentReply) {
         if(err) {
-            res.send({ error: err});
-            return next(err);
+            res.send(err);
+           // return next(err);
         }
 
-        res.status(200).json({ message: 'Reply successfully sent!'});
-        return(next);
+        // res.status(200).json({ message: 'Reply successfully sent!'});
+        // return(next);
     });
 }
 

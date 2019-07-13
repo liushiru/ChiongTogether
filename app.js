@@ -87,9 +87,15 @@ var io = socket(server);
 
 app.use(express.static(path.join(__dirname, 'views/chat')));
 //listen on every connection
-io.on('connection', (soc) => {
-    console.log('New user connected');
-})
+io.on('connection', (socket) => {
+    console.log('New user connected', socket.id);
+
+    socket.on('chat', function(data) {
+        //two users//////////////////////////////////////////////////////////////////////////
+        io.sockets.emit('chat', data);
+        console.log(data);
+    });
+});
 
 
 
