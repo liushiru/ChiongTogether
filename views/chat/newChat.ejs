@@ -23,8 +23,8 @@
                 <div id="chat">
                     <br>
                     <div id = "chat-window" class="card">
-                        <div id="output" class="card-block">
-                        </div>
+                        <div id="output" class="card-block"><div id="feedback"></div></div>
+                        
                     </div>
                     <br>
                     <!-- <form action="/chat/newChat" method="POST"> -->
@@ -37,29 +37,44 @@
         </div>
     </div>
     <% var name = recipient %>
+    <% console.log(user) %>
+    <!-- <script src='chat.js' ></script> -->
     
     <script>
-        var socket = io.connect('http://localhost:5000');
-
+         var socket = io.connect('http://localhost:5000');
+        //const socket = new WebSocket('http://localhost:5000');
         var receiver = document.getElementById('receiver');
         var output = document.getElementById('output');
         var btn = document.getElementById('send');
         var message = document.getElementById('message');
-
+        var feedback = document.getElementById('feedback')
+        
+        
         // Emit events
 
+        // Establish the connection
+        socket.addEventListener('connect', () => {
+            socket.emit()
+        });
+        socket.addEventListener('open', (event) => {
+            console.log('what?..');
+        })
+
+
+        // Click the send button
         btn.addEventListener('click', function(){
             socket.emit('chat', {
-                message: message.value
-                // recipient: receiver.value
+                senderSocket: socket.id,
+                senderId: '<%= sender.id %>',
+                message: message.value,
+                recipient: '<%= name %>'
             });
-            
-            // Listen for events
         });
+        // Listen for events
         socket.on('chat', function(data){
-            output.innerHTML += '<p><strong>' + "<%= sender %>" + ':</strong>' + data.message + '</p>'
-        });
+            output.innerHTML += '<p><strong>' + "<%= sender.name %>" + ':</strong>' + data.message + '</p>'
+        });        
 
-        
+
     </script>
 </body>

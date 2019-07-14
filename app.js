@@ -10,6 +10,7 @@ const methodOverride = require('method-override');
 var path = require('path'); 
 const socketEvents = require('./socketEvents');
 
+
 //Passport config
 require('./config/passport')(passport);
 
@@ -28,7 +29,7 @@ app.use(expressLayouts);
 app.set('view engine', 'ejs');
  
 //Static
-app.use(express.static(path.join(__dirname, './views/chat')));
+//app.use('./views/chat', express.static(path.join(__dirname, 'views')));
 app.use('/style', express.static('style'));
 
 //methodOverride
@@ -44,6 +45,12 @@ app.use(session({
     saveUninitialized: true
   }));
 
+//Expose session to ejs
+app.use(function(req, res, next) {
+    res.locals.user = req.session.user;
+    next();
+  });
+  
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
@@ -73,32 +80,13 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 
-var socket = require("socket.io")
 
 const PORT = process.env.PORT || 5000;
 
 var server = app.listen(PORT, console.log(`Server started on port ${PORT}`));
 
-
-//const io = require('socket.io').listen(server);
-
-var io = socket(server);
-//app.use(express.static('./views/chat'));
-
-app.use(express.static(path.join(__dirname, 'views/chat')));
-//listen on every connection
-io.on('connection', (socket) => {
-    console.log('New user connected', socket.id);
-
-    socket.on('chat', function(data) {
-        //two users//////////////////////////////////////////////////////////////////////////
-        io.sockets.emit('chat', data);
-        console.log(data);
-    });
-});
-
-
-
-//socketEvents(io);
+var io = require('socket.io')(server);
+socketEvents(io);
+//app.use(express.static(path.join(__dirname, 'views/chat')));
 
 

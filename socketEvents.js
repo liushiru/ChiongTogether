@@ -3,6 +3,14 @@ exports = module.exports = function(io) {
     io.on('connection', (socket) => {
         console.log('new user connected');
 
+        socket.on('chat', function(data) {
+            //two users//////////////////////////////////////////////////////////////////////////
+            //io.sockets.emit('chat', data);
+            console.log(data);
+            io.to(`${data.senderSocket}`).emit('chat', data);
+
+        });
+        /*
         // On conversation entry, join broadcast channel
         socket.on('enter conversation', (conversation) => {
             socket.leave(conversation);
@@ -20,5 +28,14 @@ exports = module.exports = function(io) {
         socket.on('disconnect', () => {
             console.log('user disconnected');
         });
+        socket.on('typing', function(data){
+            socket.broadcast.emit('typing', data)
+        });*/
+        //event
+    });
+
+    io.on('toOne', (socket) => {
+        console.log
     });
 }
+
