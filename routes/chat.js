@@ -4,11 +4,11 @@ const ChatController = require('./ChatController')
 const { ensureAuthenticated, forwardAuthenticated}  = require('../config/auth');
 
 
-const server = require('http').Server(router);
-const io = require('socket.io')(server);
+//const server = require('http').Server(router);
+//const io = require('socket.io')(server);
 router.use(express.urlencoded({ extended: true}));
 
-const rooms = {name: {}, name2: {}};
+
 
 
 
@@ -23,16 +23,19 @@ router.post('/newChat', ensureAuthenticated, ChatController.newConversation);
 // Send reply in conversation
 router.post('/:conversationId', ensureAuthenticated, ChatController.sendReply);
 
-
-
 // Get the page for new convo
-router.get('/new/:recipient', ensureAuthenticated, (req, res) => {
+
+
+const app = require('../app');
+const io = app.io;
+router.get('/new/:recipient', (req, res) => {
     var receiver = JSON.stringify(req.params.recipient)
     res.render('../views/chat/newChat', {
         recipient: req.params.recipient,
         sender: req.user
     });
 })
+
 
 
 

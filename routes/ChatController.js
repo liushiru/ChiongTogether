@@ -4,6 +4,8 @@ const Message = require('../models/Message')
 const User = require('../models/User');
 const mongoose = require('mongoose');
 
+
+
 exports.getConversations = function(req, res, next) {
     //Only return one message from each conversation to display as snippet
     Conversation.find({ participans: req.use._id })
@@ -31,7 +33,10 @@ exports.getConversations = function(req, res, next) {
                 }
                 fullConversations.push(message);
                 if(fullConversations.length === conversations.length) {
-                    return res.status(200).json({ conversations: fullConversations });
+                    //return res.status(200).json({ conversations: fullConversations });
+                    return res.render('../views/chat/allChats', {
+                        conversations: fullConversations
+                     });
                 }
             });
         });
@@ -53,7 +58,10 @@ exports.getConversation = function(req, res, next) {
             return next(err);
         }
 
-        res.status(200).json({ conversations: message});
+        //res.status(200).json({ conversations: message});
+        res.render('../views/chat/currentChat', {
+            conversations: messages
+        })
     });
 }
 
@@ -140,3 +148,37 @@ exports.deleteConversation = function(req, res, next) {
         });
 }
 
+exports.socketEvent = function(io) {
+    // Set socket.io listeners.
+    io.on('connection', (socket) => {
+        console.log('new user connected');
+
+        socket.on('chat', function(data) {
+            //two users//////////////////////////////////////////////////////////////////////////
+            io.sockets.emit('chat', data);
+            console.log(data);
+        });
+        
+        // On conversation entry, join broadcast channel
+        socket.on('enter conversation', (conversation) => {
+            socket.leave(conversation);
+        });
+
+        socket.on('leave conversation', (conversation) => {
+            socket.leave(conversation);
+            console.log(conversation);
+        });
+
+        socket.on('new message', (conversation) => {
+            io.sockets.in(conversation).emit('refresh messages', conversation);
+        });
+
+        socket.on('disconnect', () => {
+            console.log('user disconnected');
+        });
+        socket.on('typing', function(data){
+            socket.broadcast.emit('typing', data)
+        });
+
+    });
+}

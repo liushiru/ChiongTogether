@@ -86,7 +86,22 @@ const PORT = process.env.PORT || 5000;
 var server = app.listen(PORT, console.log(`Server started on port ${PORT}`));
 
 var io = require('socket.io')(server);
-socketEvents(io);
+var connectedUsers = {};
+io.on('connection', (socket) => {
+  console.log('socket handshake stored ' + socket.handshake.query.recipientId);
+  connectedUsers[socket.handshake.query.recipientId] = socket;
+  console.log(connectedUsers);
+  //console.log('new socket connected: ' + socket.id);
+  socket.on('chat', function(data) {
+      console.log('data.recipient ' + data.recipient);
+      io.to(`${data.senderSocket}`).emit('chat', data);
+        console.log('undefined?' + connectedUsers[data.recipient]);
+      if ( connectedUsers[data.recipient] !== undefined) { 
+        connectedUsers[data.recipient].emit('chat', data);
+      }
+  });
+});
+module.exports = app;
+exports.io = io;
+//socketEvents(io);
 //app.use(express.static(path.join(__dirname, 'views/chat')));
-
-

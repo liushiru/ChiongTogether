@@ -37,11 +37,10 @@
         </div>
     </div>
     <% var name = recipient %>
-    <% console.log(user) %>
     <!-- <script src='chat.js' ></script> -->
     
     <script>
-         var socket = io.connect('http://localhost:5000');
+         var socket = io.connect('http://localhost:5000', { query: "recipientId=<%= sender.id %>" });
         //const socket = new WebSocket('http://localhost:5000');
         var receiver = document.getElementById('receiver');
         var output = document.getElementById('output');
@@ -49,18 +48,32 @@
         var message = document.getElementById('message');
         var feedback = document.getElementById('feedback')
         
-        
         // Emit events
-
+        
         // Establish the connection
+        // socket.addEventListener('connect', () => {
+        //     console.log('what?');
+        //     socket.emit('openess', {
+        //         openerSocket: socket.id,
+        //         openerId: '<%= sender.id %>',
+        //         recipient: '<%= name %>'
+        //     });
+        // });
+        /*
+        var room = '<%= sender.id %>'
         socket.addEventListener('connect', () => {
-            socket.emit()
+            console.log(room);
+            socket.rooms.push(room);
         });
-        socket.addEventListener('open', (event) => {
+        socket.addEventListener('onopen', (event) => {
             console.log('what?..');
         })
-
-
+        var what = socket.onopen( (event) => {
+            console.log(event);
+            console.log('what.?');
+        })
+        console.log(what);
+*/
         // Click the send button
         btn.addEventListener('click', function(){
             socket.emit('chat', {
