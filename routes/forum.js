@@ -7,6 +7,7 @@ const User = require('../models/User');
 const Post = require('../models/Post'); 
 const Comment = require('../models/Comment');
 
+
 //main forum
 router.get('/', (req, res) => {
   /*  Post.find({}, (err, posts) => {
@@ -16,7 +17,6 @@ router.get('/', (req, res) => {
       });
       res.send(postMap);
     }); */
-
     Post.find({}, (err, posts) => {
       if (err) throw err;
       res.render('../views/forum/mainForum' , {posts: posts});
@@ -25,6 +25,28 @@ router.get('/', (req, res) => {
 
 });
 
+router.get('/search', (req, res) => {
+  if (req.query.search) {
+    
+    const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+    Post.find( 
+      {$or:[
+            {"title": regex},
+            {"content": regex},
+            {"author": regex}
+        ]},
+      (err, allPosts) => {
+      if (err) {
+        console.log(err);
+      } else {
+        Comment.find()
+        res.render("../views/forum/mainForum", {posts: allPosts})
+      }
+    });
+  } else {
+    //Does nothing
+  }
+});
 //Create Post type
 router.get('/startJio', ensureAuthenticated, (req, res) => 
   res.render('../views/forum/start-jio-type', {
@@ -80,7 +102,7 @@ function getPostInfo (post, author, res) {
         User.findById(comment.author, (err, commentor) => {
           comments.push({commentor: commentor, content: comment.content});
           if (comments.length === post.comment.length) {
-            res.render('../views/forum/singleForum1', {
+            res.render('../views/forum/singleForum', {
               post: post,
               author: author,
               comments: comments
@@ -142,5 +164,11 @@ router.put('/addComment', ensureAuthenticated, async (req, res) => {
   res.redirect('back');
       
 });
+
+
+function escapeRegex(text) {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
+
 
 module.exports = router;

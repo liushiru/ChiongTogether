@@ -204,10 +204,34 @@ div.forum-li:hover {
     line-height: 2.5;
 }
 
+.single-content-section-c {
+    width:100%;
+    padding-right: 10px;
+    text-align: left;
+}
 .comment-btn{
     padding: 0 20px;
     margin-left: 15px;
-    margin-top:20px;
+    margin-top:10px;
+    width: 20%;
+    height: 50px;
+    border-radius: 10px;
+    background: #9abebc;
+    float: left;
+    
+    font-family: Montserrat-Bold;
+    font-size: 14px;
+    color: rgb(63, 62, 62);
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.join-btn{
+    padding: 15px;
+    margin-left: 15px;
+    margin-bottom: 50px;
+    margin-top:10px;
     width: 20%;
     height: 50px;
     border-radius: 10px;
@@ -221,6 +245,20 @@ div.forum-li:hover {
     letter-spacing: 2px;
 }
 
+.join-btn:hover{
+    background: #64a19d;
+}
+
 .comment-btn:hover{
     background-color: #64a19d;
+}
+
+.comment-section-1{
+    background-color:#e3eceb;
+    padding: 20px;
+}
+
+.comment-section-0{
+    background-color: #f8f8f8;
+    padding: 20px;
 }

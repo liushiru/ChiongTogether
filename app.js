@@ -7,6 +7,9 @@ const session = require('express-session');
 const passport = require('passport');
 const app = express();
 const methodOverride = require('method-override');
+var path = require('path'); 
+const socketEvents = require('./socketEvents');
+
 
 //Passport config
 require('./config/passport')(passport);
@@ -24,8 +27,9 @@ mongoose.connect(db, { useNewUrlParser: true})
 //EJS
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
-
+ 
 //Static
+//app.use('./views/chat', express.static(path.join(__dirname, 'views')));
 app.use('/style', express.static('style'));
 
 //methodOverride
@@ -41,6 +45,12 @@ app.use(session({
     saveUninitialized: true
   }));
 
+//Expose session to ejs
+app.use(function(req, res, next) {
+    res.locals.user = req.session.user;
+    next();
+  });
+  
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
@@ -60,6 +70,7 @@ app.use((req, res, next) => {
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
 app.use('/forum', require('./routes/forum'));
+app.use('/chat', require('./routes/chat'))
 
 //Body-parser
 // parse application/x-www-form-urlencoded
@@ -69,7 +80,28 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 
+
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, console.log(`Server started on port ${PORT}`));
+var server = app.listen(PORT, console.log(`Server started on port ${PORT}`));
 
+var io = require('socket.io')(server);
+var connectedUsers = {};
+io.on('connection', (socket) => {
+  console.log('socket handshake stored ' + socket.handshake.query.recipientId);
+  connectedUsers[socket.handshake.query.recipientId] = socket;
+  console.log(connectedUsers);
+  //console.log('new socket connected: ' + socket.id);
+  socket.on('chat', function(data) {
+      console.log('data.recipient ' + data.recipient);
+      io.to(`${data.senderSocket}`).emit('chat', data);
+        console.log('undefined?' + connectedUsers[data.recipient]);
+      if ( connectedUsers[data.recipient] !== undefined) { 
+        connectedUsers[data.recipient].emit('chat', data);
+      }
+  });
+});
+module.exports = app;
+exports.io = io;
+//socketEvents(io);
+//app.use(express.static(path.join(__dirname, 'views/chat')));
