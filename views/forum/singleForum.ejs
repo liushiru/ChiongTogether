@@ -57,20 +57,20 @@
                     </div>
                 </div>
             </div>
-            <a class='join-btn' href="/users/<%= author.matricNo %>">I want to join</a>
+            <a class='join-btn' href="/users/<%= author.matricNo %>">Contact <%= author.name %></a>
             
   <!--------------------------------write comment------------------------>          
             
           
           <form class="single-content-section-c" action="/forum/addComment?_method=PUT" method="POST">
-            <h5 class='comment-title'>Leave a Comment:</h5>
-            <textarea 
+            <h5 class='comment-title'>I Wana Join:</h5>
+            <textarea
             class="single-content-section-b" 
             rows="3"
             type="comment"
             id="comment"
             name="comment"
-            placeholder="Have any question? You can leave in comment."
+            placeholder="Anything want to tell <%= author.name.toString() %>? You could leave it here!"
             ></textarea>
             <input type="hidden" id="postId" name="postId" value="<%= post.id %>">
             <button type="submit" class="comment-btn">Submit</button>
