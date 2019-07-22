@@ -3,6 +3,7 @@ const router = express();
 const ChatController = require('./ChatController')
 const { ensureAuthenticated, forwardAuthenticated}  = require('../config/auth');
 const Conversation = require('../models/Conversation')
+const User = require('../models/User')
 const Message = require('../models/Message')
 //const server = require('http').Server(router);
 //const io = require('socket.io')(server);
@@ -16,12 +17,52 @@ router.use(express.urlencoded({ extended: true}));
 router.get('/myChats', ensureAuthenticated, (req, res) => {
     let fullConversations=[];    
     Conversation.find({participants: req.user.id})
-    .select('_id')
+    .populate({
+        path: "participant",
+        select: "name id"
+    })
     .exec(function(err, conversations) {
         if (err) {
             res.send(err);
             console.log(err);
         } else {
+            console.log(conversations);
+            let allRecipients = [];
+            conversations.forEach((conversation) => {
+                conversation.participants.forEach((participant) => {
+                    if (participant !== req.user.id) {
+                        User.findById(participant)
+                        .select("_id name")
+                        .exec((err, user) => {
+                            if (err) {
+                                console.log(err)
+                            } else {
+                                allRecipients.push({id: user._id, name: user.name})
+                                if (allRecipients.length === conversations.length) {
+                                    res.render('../views/chat/allChats', {
+                                        conversations: allRecipients
+                                    });
+                                    console.log(allRecipients)
+                                }
+                            }
+                        })
+                    }
+                })
+            })
+           /* let allRecipients = [];
+            allConversations.forEach((conversation) => {
+                User.findById(conversation)
+                .select("_id name")
+                .exec((err, user) => {
+                    if (err) {
+                        console.log(err)
+                    } else {
+                        allRecipients.push({id: user.id, name: user.name})
+                    }
+                })
+            }
+            var i=0;
+            console.log(conversations);
             // Set up empty array to hold conversations + most recent message
             conversations.forEach(function(conversation){
                 Message.find({ 'conversationId': conversation._id })
@@ -35,9 +76,9 @@ router.get('/myChats', ensureAuthenticated, (req, res) => {
                     if(err){
                         console.log(err);
                     } else {
-                        console.log(message);
+                        console.log(i++);
                         console.log(message[0]);
-                        fullConversations.push({to: message[0].author.name, message: message[0].body});
+                        //fullConversations.push({to: message[0].author.name, message: message[0].body});
                         if(fullConversations.length === conversations.length) {
                             res.render('../views/chat/allChats', {
                                 conversations: fullConversations
@@ -45,7 +86,7 @@ router.get('/myChats', ensureAuthenticated, (req, res) => {
                         }
                     }
                 });
-            });
+            }); */
         }
     });
     

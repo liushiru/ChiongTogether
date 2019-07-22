@@ -1,6 +1,14 @@
-<ul> 
-<%    for(var i=0; i<conversations.length; i++) { %>
-    <h4><%= conversations[i].to %></h4>
-    <h6><%= conversations[i].message %></h6>
-<%    } %>
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <%    for(var i=0; i<conversations.length; i++) { %>
+        <h4><a href='/chat/new/<%= conversations[i].id %>'><%= conversations[i].name %></a></h4>
+    <%    } %>
+</body>
+</html>
