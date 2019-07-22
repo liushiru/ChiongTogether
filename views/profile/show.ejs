@@ -94,14 +94,14 @@
                                 <div class="tab-content profile-tab" id="myTabContent">
                                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                         
-                                        <div class="row">
+                                        <!-- <div class="row">
                                             <div class="col-md-6">
                                                 <label>User Id</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <p><%= user.name %></p>
                                             </div>
-                                        </div>
+                                        </div> -->
                                                     
                                         <div class="row">
                                             <div class="col-md-6">
@@ -138,6 +138,16 @@
                                                 <p><%= user.year %></p>
                                             </div>
                                         </div>
+
+                                        
+                                        <div class="row">
+                                                <div class="col-md-6">
+                                                    <% if(!edit) { %>
+                                                        <label><a href="/chat/new/<%= user._id %>">Chat with her</a></label>
+                                                    <% } %>
+                                                </div>
+                                        </div>
+
 
                                         <!--major/minor/age/gender-->
                                     </div>

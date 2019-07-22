@@ -8,38 +8,41 @@ const mongoose = require('mongoose');
 
 exports.getConversations = function(req, res, next) {
     //Only return one message from each conversation to display as snippet
-    Conversation.find({ participans: req.use._id })
+    Conversation.find({ participans: req.user._id })
     .select('_id')
     .exec(function(err, conversations) {
         if (err) {
-            res.send({ error: err});
-            return next(err);
-        }
+            res.send(err);
+            console.log(err);
+        } else {
 
-        // Set up empty array to hold conversations + most recent message
-        let fullConversations=[];
-        conversations.forEach(function(conversations){
-            Message.find({ 'conversationId': conversations._id })
-            .sort('-createdAt')
-            .limit(1)
-            .populate({
-                path: "author",
-                select: "name"
-            })
-            .exec(function(err, message) {
-                if(err){
-                    res.send({ error: err});
-                    return next(err);
-                }
-                fullConversations.push(message);
-                if(fullConversations.length === conversations.length) {
-                    //return res.status(200).json({ conversations: fullConversations });
-                    return res.render('../views/chat/allChats', {
-                        conversations: fullConversations
-                     });
-                }
+            // Set up empty array to hold conversations + most recent message
+            let fullConversations=[];
+            conversations.forEach(function(conversation){
+                Message.find({ 'conversationId': conversation._id })
+                .sort('-createdAt')
+                .limit(1)
+                .populate({
+                    path: "author",
+                    select: "name"
+                })
+                .exec(function(err, message) {
+                    if(err){
+                        res.send({ error: err});
+                        return next(err);
+                    } else {
+                        //console.log('find message ' + message);
+                        fullConversations.push({to: message.author.name, message: message.body});
+                        if(fullConversations.length === conversations.length) {
+                            //return res.status(200).json({ conversations: fullConversations });
+                            return res.render('../views/chat/allChats', {
+                                conversations: fullConversations
+                            });
+                        }
+                    }
+                });
             });
-        });
+        }
     });
 }
 
@@ -115,23 +118,6 @@ exports.newConversation = function(req, res, next) {
     }); 
 }
 
-exports.sendReply = function(req, res, next) {
-    const reply = new Message({
-        conversationId: req.params.conversationId,
-        body: req.body.composedMessage,
-        author: req.user._id
-    });
-
-    reply.save(function(err, sentReply) {
-        if(err) {
-            res.send(err);
-           // return next(err);
-        }
-
-        // res.status(200).json({ message: 'Reply successfully sent!'});
-        // return(next);
-    });
-}
 
 exports.deleteConversation = function(req, res, next) {
     Conversation.findOneAndRemove({

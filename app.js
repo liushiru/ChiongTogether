@@ -9,6 +9,9 @@ const app = express();
 const methodOverride = require('method-override');
 var path = require('path'); 
 const socketEvents = require('./socketEvents');
+const User = require('./models/User');
+const Message = require('./models/Message');
+const Conversation = require('./models/Conversation');
 
 
 //Passport config
@@ -88,20 +91,35 @@ var server = app.listen(PORT, console.log(`Server started on port ${PORT}`));
 var io = require('socket.io')(server);
 var connectedUsers = {};
 io.on('connection', (socket) => {
-  console.log('socket handshake stored ' + socket.handshake.query.recipientId);
-  connectedUsers[socket.handshake.query.recipientId] = socket;
-  console.log(connectedUsers);
-  //console.log('new socket connected: ' + socket.id);
-  socket.on('chat', function(data) {
-      console.log('data.recipient ' + data.recipient);
-      io.to(`${data.senderSocket}`).emit('chat', data);
-        console.log('undefined?' + connectedUsers[data.recipient]);
-      if ( connectedUsers[data.recipient] !== undefined) { 
-        connectedUsers[data.recipient].emit('chat', data);
+  console.log('server add conUser ' + socket.handshake.query.senderId)
+  connectedUsers[socket.handshake.query.senderId] = socket;
+  socket.on('chat', function(data) {  
+      User.findById(data.senderId, (err, sender) => {
+      io.to(`${data.senderSocket}`).emit('chat', data, sender.name);
+      console.log(data.senderSocket);
+     // console.log(socket.handshake.query.recipientId);
+     // console.log(connectedUsers[data.recipient]);
+      if (connectedUsers[data.recipient] !== undefined) { 
+        console.log(connectedUsers[data.recipient].id);
+        connectedUsers[data.recipient].emit('chat', data, sender.name);
       }
+      // console.log( socket.handshake.query.conversationId);
+      //Save reply
+      const reply = new Message({
+        conversationId: socket.handshake.query.conversationId,
+        body: data.message,
+        author: data.senderId
+      });
+
+      reply.save(function(err, sentReply) {
+          if(err) {
+              console.log(err);
+          } else {
+              console.log('reply sent')
+          }
+      }); 
+    });
   });
 });
-module.exports = app;
-exports.io = io;
 //socketEvents(io);
 //app.use(express.static(path.join(__dirname, 'views/chat')));

@@ -137,7 +137,7 @@ router.get('/logout', (req, res) => {
 
 
 //
-router.get("/:matricNo", (req, res, next) =>{
+router.get("/:matricNo", ensureAuthenticated, (req, res, next) =>{
     let posts = [];
     const matricNo = req.params.matricNo;
     const edit = (req.user.matricNo === matricNo);
