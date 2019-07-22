@@ -15,7 +15,7 @@ router.use(express.urlencoded({ extended: true}));
 
 // View messages to and from authenticated user
 router.get('/myChats', ensureAuthenticated, (req, res) => {
-    let fullConversations=[];    
+    let allRecipients = [];  
     Conversation.find({participants: req.user.id})
     .populate({
         path: "participant",
@@ -25,9 +25,11 @@ router.get('/myChats', ensureAuthenticated, (req, res) => {
         if (err) {
             res.send(err);
             console.log(err);
+        } else if (conversations.length === 0) {
+            res.render('../views/chat/allChats', {
+                recipients: allRecipients
+            });
         } else {
-            console.log(conversations);
-            let allRecipients = [];
             conversations.forEach((conversation) => {
                 conversation.participants.forEach((participant) => {
                     if (participant !== req.user.id) {
@@ -40,53 +42,14 @@ router.get('/myChats', ensureAuthenticated, (req, res) => {
                                 allRecipients.push({id: user._id, name: user.name})
                                 if (allRecipients.length === conversations.length) {
                                     res.render('../views/chat/allChats', {
-                                        conversations: allRecipients
+                                        recipients: allRecipients
                                     });
-                                    console.log(allRecipients)
                                 }
                             }
                         })
                     }
                 })
             })
-           /* let allRecipients = [];
-            allConversations.forEach((conversation) => {
-                User.findById(conversation)
-                .select("_id name")
-                .exec((err, user) => {
-                    if (err) {
-                        console.log(err)
-                    } else {
-                        allRecipients.push({id: user.id, name: user.name})
-                    }
-                })
-            }
-            var i=0;
-            console.log(conversations);
-            // Set up empty array to hold conversations + most recent message
-            conversations.forEach(function(conversation){
-                Message.find({ 'conversationId': conversation._id })
-                .sort('-createdAt')
-                .limit(1)
-                .populate({
-                    path: "author",
-                    select: "name"
-                })
-                .exec(function(err, message) {
-                    if(err){
-                        console.log(err);
-                    } else {
-                        console.log(i++);
-                        console.log(message[0]);
-                        //fullConversations.push({to: message[0].author.name, message: message[0].body});
-                        if(fullConversations.length === conversations.length) {
-                            res.render('../views/chat/allChats', {
-                                conversations: fullConversations
-                            });
-                        }
-                    }
-                });
-            }); */
         }
     });
     
@@ -102,6 +65,7 @@ router.get('/:conversationId', ensureAuthenticated, ChatController.getConversati
 
 // Get the page for new convo
 router.get('/new/:recipient', (req, res) => {
+    //find whether convo already exist 
     Conversation.findOne({participants: {$all: [req.user, req.params.recipient]}}, (err, conversation) => {
         if (err) {
             console.log(err);
@@ -116,7 +80,8 @@ router.get('/new/:recipient', (req, res) => {
             res.render('../views/chat/newChat', {
                 recipient: req.params.recipient,
                 sender: req.user,
-                conversationId: conversation.id
+                conversationId: conversation.id,
+                messages: []
             });
         } else {
             //load previous message
@@ -154,28 +119,18 @@ function getConversation (conversationId, req, res) {
     });
 }
 
-
-module.exports = router;
-// exports.io = io;
-/* 
-router.get('/', (req, res) => {
-    res.render('../views/chat/index', { rooms: rooms })
+router.delete('/:recipientId', async (req, res) => {
+    //Delete all messages
+    // await Message.deleteMany({ conversationId: req.params.conversationId });
+    //Delete the convo
+    console.log('got here');
+    Conversation.findOneAndDelete({participants: {$all: [req.user, req.params.recipientId]}}, (err, conversation) => {
+        if (err) {
+            console.log(err)
+        } else {
+            Message.deleteMany({ conversationId: conversation.id });
+        }
+    })
+    res.redirect('back');
 });
-
-router.post('/room', (req, res) => {
-    if (rooms[req.body.room] != null) {
-        return res.redirect('/');
-    }
-    rooms[req.body.room] = { users: {} }
-    var lol = req.body.room;
-    console.log(lol);
-    res.redirect('/chat/' + lol);
-    io.emit('room-created', req.body.room);
-    //res.send('this line');
-    // Send message that new room was created
-
-})
-router.get('/:room', (req, res) => {
-    console.log(req.params);
-    res.render('../views/chat/room.ejs', {roomName: req.params.room})
-})*/
+module.exports = router;

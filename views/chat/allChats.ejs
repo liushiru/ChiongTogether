@@ -7,8 +7,15 @@
     <title>Document</title>
 </head>
 <body>
-    <%    for(var i=0; i<conversations.length; i++) { %>
-        <h4><a href='/chat/new/<%= conversations[i].id %>'><%= conversations[i].name %></a></h4>
+    These are all your chats
+    <%    for(var i=0; i<recipients.length; i++) { %>
+        <h4><a href='/chat/new/<%= recipients[i].id %>'><%= recipients[i].name %></a></h4>
+        <%- include('../partials/delete_post', {url: `/chat/${recipients[i].id}`}) %>
     <%    } %>
+
+    <% if (recipients.length === 0) { %>
+        You currently have no chats yet. Click here to make new friends now!
+    <% }%>
+
 </body>
 </html>
