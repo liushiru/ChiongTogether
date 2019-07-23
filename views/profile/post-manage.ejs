@@ -1,0 +1,101 @@
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+        <!--name-->
+        <a class="navbar-brand js-scroll-trigger" href="/home">Chiong Together</a>
+        
+        <!--Menu Button-->
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-bars fa-fw"></i>
+        Menu
+        </button>
+
+        <!--nav bar-->
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/forum/startJio">Start a Jio</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/forum">Forum</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#">Study Clique</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="#">Focus</a>
+                </li>
+            <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/dashboard">My Account</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/users/logout">Logout</a>
+            </li>
+        </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Header -->
+<div class="intro-header">
+<div class="container">
+    <div class="row">
+        
+        <div class="col-lg-12">
+            <div class="profile-message">
+                <h1>Hello <%= user.name %> :)</h1>
+            </div>   
+        </div>
+<!----------------------------------------------1------------------------------------------------------------------------->    
+        <div class="container emp-profile">
+<!-----------------------------------------row1--------------------------------------------------------------------------->                            
+            <div class="row">
+
+                <div class="col-md-10">
+                    <div class="profile-head">
+<!-----------------------------------------nav------------------------------------------------------------>
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/users/<%= user.matricNo%>">Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="/users/<%= user.matricNo%>/post">Post</a>
+                            </li>
+                            <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#">Comment</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#">Chat Room</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!--------------------------------------------row2----------------------------------------------------------->
+            <div class="row">
+                <!-------basic info------------------>
+                <div class="col-md-8">
+                    <div class="profile-tab">
+                        <div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>User Id</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><%= user.name %></p>
+                                </div>
+                            </div>
+                            <!--major/minor/age/gender-->
+                        </div>
+                <!------------------------------------------------------>
+                    </div>
+                </div>
+            </div>      
+            <!-----------------------------------------1-------------------------------------------------------->
+            
+        </div>
+    </div>
+</div>
+</div>

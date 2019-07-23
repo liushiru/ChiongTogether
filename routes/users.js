@@ -136,7 +136,7 @@ router.get('/logout', (req, res) => {
   });
 
 
-//
+//profile
 router.get("/:matricNo", (req, res, next) =>{
     let posts = [];
     const matricNo = req.params.matricNo;
@@ -173,7 +173,7 @@ router.get("/:matricNo", (req, res, next) =>{
     });
   });
 
-
+// edit profile
 router.get("/:matricNo/edit", async (req, res) => {
     try {
         const user = User.findById(req.params.matricNo)
