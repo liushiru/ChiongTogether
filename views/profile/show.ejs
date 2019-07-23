@@ -139,6 +139,18 @@
                                             </div>
                                         </div>
 
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Course of Study</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <% if (user.course !== '') {%>
+                                                    <p><%= user.course %></p>                                                    
+                                                <% } else { %>
+                                                    <p><a href="/users/<%= user.matricNo %>/edit">Complete your information now</a></p> 
+                                                <% }%>
+                                            </div>
+                                        </div>
                                         
                                         <div class="row">
                                                 <div class="col-md-6">

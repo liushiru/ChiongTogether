@@ -176,11 +176,10 @@ router.get("/:matricNo", ensureAuthenticated, (req, res, next) =>{
 
 router.get("/:matricNo/edit", ensureAuthenticated, async (req, res) => {
     try {
-        const user = User.findById(req.params.matricNo)
-        res.render('../views/profile/edit', { user : user })
+        //const user = User.findById(req.params.matricNo)
+        res.render('../views/profile/edit1', { user : req.user })
     } catch {
-        //res.redirect(':matricNo');
-        res.send('its an error')
+        res.render('../views/error');
     }
 });
 
@@ -188,23 +187,18 @@ router.put('/change', ensureAuthenticated, async (req, res) => {
     let user;
     try {
         user = await User.findById(req.user.id);
-        console.log(`/change/ ${user}`);
         user.name = req.body.name;
-        console.log(req.body);
+        user.year = req.body.year;
+        user.course = req.body.course;
         await user.save();
         res.redirect(`/users/${user.matricNo}`)
-    } catch {
+    } catch (err) {
+        console.log(err);
         if (user == null) {
             res.redirect(`/users/${user.matricNo}`);
-            //add in messages
             console.log('Cannot find users');
         } else {
-            res.render('../views/profile/edit', {
-                
-                user: user,
-                errorMessage: "Error updating user"
-            });
-            console.log('lmao');
+            res.render('../views/error')
         }
     }    
 });

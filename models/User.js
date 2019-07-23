@@ -17,8 +17,9 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    avatar: {
+    course: {
         type: String,
+        default: '',
         required: false
     },
     year: {
