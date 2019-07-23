@@ -30,17 +30,26 @@ router.get('/myChats', ensureAuthenticated, (req, res) => {
                 recipients: allRecipients
             });
         } else {
+            var i=0;
+            var j=0;
             conversations.forEach((conversation) => {
                 conversation.participants.forEach((participant) => {
-                    if (participant !== req.user.id) {
+                    var a = JSON.stringify(participant);
+                    var b = JSON.stringify(req.user.id);
+                    if (a !== b) {
                         User.findById(participant)
                         .select("_id name")
-                        .exec((err, user) => {
+                        .exec((err, recs) => {
                             if (err) {
                                 console.log(err)
                             } else {
-                                allRecipients.push({id: user._id, name: user.name})
+                                console.log(recs.name);
+                                allRecipients.push({id: recs.id, name: recs.name})
                                 if (allRecipients.length === conversations.length) {
+                                    console.log('list of recipient name: ');
+                                    allRecipients.forEach((recipient) => {
+                                        console.log(recipient.name);
+                                    }) 
                                     res.render('../views/chat/allChats', {
                                         recipients: allRecipients
                                     });

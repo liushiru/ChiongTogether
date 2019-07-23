@@ -174,7 +174,7 @@ router.get("/:matricNo", ensureAuthenticated, (req, res, next) =>{
   });
 
 
-router.get("/:matricNo/edit", async (req, res) => {
+router.get("/:matricNo/edit", ensureAuthenticated, async (req, res) => {
     try {
         const user = User.findById(req.params.matricNo)
         res.render('../views/profile/edit', { user : user })
@@ -184,10 +184,9 @@ router.get("/:matricNo/edit", async (req, res) => {
     }
 });
 
-router.put('/change', async (req, res) => {
+router.put('/change', ensureAuthenticated, async (req, res) => {
     let user;
     try {
-
         user = await User.findById(req.user.id);
         console.log(`/change/ ${user}`);
         user.name = req.body.name;
