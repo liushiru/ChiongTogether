@@ -27,13 +27,11 @@ router.get('/', (req, res) => {
 
 router.get('/search', (req, res) => {
   if (req.query.search) {
-    
     const regex = new RegExp(escapeRegex(req.query.search), 'gi');
     Post.find( 
       {$or:[
             {"title": regex},
-            {"content": regex},
-            {"author": regex}
+            {"content": regex}
         ]},
       (err, allPosts) => {
       if (err) {
@@ -44,7 +42,7 @@ router.get('/search', (req, res) => {
       }
     });
   } else {
-    //Does nothing
+    res.redirect('back');
   }
 });
 //Create Post type
