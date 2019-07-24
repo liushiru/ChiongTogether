@@ -85,8 +85,18 @@
                             <div class="col-md-4">
                                 <div class="profile-work">
                                     <div class="profile-img">
-                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
+                                        <% var path = JSON.stringify(user.img) %>
+                                        <% var prettyPath = JSON.parse(path) %>
+                                        <img src='<%= prettyPath %>' class="responsive-img">
+                                        
                                     </div>
+                                    <form action="/users/upload" method="POST" enctype="multipart/form-data">
+                                        <div class="edit-btn">
+                                            <span>Change</span>
+                                            <input name="myImage" type="file">
+                                            <button type="submit" class="edit-btn">Submit</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                             <!-------basic info------------------>

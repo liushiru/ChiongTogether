@@ -184,7 +184,7 @@ router.get("/:matricNo", ensureAuthenticated, (req, res, next) =>{
             res.send(err);
         } else {
             if (user.post.length === 0) {
-                res.render('../views/profile/showTest', {
+                res.render('../views/profile/show', {
                     user,
                     posts,
                     edit
@@ -197,7 +197,7 @@ router.get("/:matricNo", ensureAuthenticated, (req, res, next) =>{
                         } else {
                             posts.push({id: post.id, title: post.title});
                             if (posts.length === user.post.length) {
-                                res.render('../views/profile/showTest', {
+                                res.render('../views/profile/show', {
                                     user,
                                     posts,
                                     edit
