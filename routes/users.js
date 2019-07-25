@@ -213,11 +213,12 @@ router.get("/:matricNo", ensureAuthenticated, (req, res, next) =>{
 
 
 router.get("/:matricNo/edit", ensureAuthenticated, async (req, res) => {
-    try {
-        res.render('../views/profile/edit1', { user : req.user })
-    } catch {
-        res.render('../views/error');
-    }
+    // try {
+    //     res.render('../views/profile/edit1', { user : req.user })
+    // } catch {
+    //     res.render('../views/error');
+    // }
+    res.render('../views/profile/edit1', { user : req.user })
 });
 
 router.put('/change', ensureAuthenticated, async (req, res) => {
