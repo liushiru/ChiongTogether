@@ -244,41 +244,7 @@ router.put('/change', ensureAuthenticated, async (req, res) => {
 //delete post
 router.delete("/:id", async (req, res) => {
     let postToDelete;
-    try {
- /*       postToDelete = await Post.findById(req.params.id);
-        //array of comment id under the post
-        let comments = postToDelete.comment;
-        console.log(comments);
-        
-        //Delete otherUser.comment
-        for(var i=0; i<comments.length; i++) {
-            console.log('line 221 enter for loop')
-            await Comment.findById(postToDelete.comment[i], (err, comment) => {
-                if (err) {
-                    console.log(err)
-                } else {
-                    console.log(`did you find the comment or not ${comment}`);
-                    User.findByIdAndUpdate(comment.author, 
-                        {"$pull": {"comment": comments[i]}});
-                }
-                console.log('line228');
-            });
-        }
 
-        //Delete Comments
-        for(var i=0; i<comments.length; i++) {
-            Comments.findByIdAndDelete(comments[i]);
-            console.log(`i = ${i}`);
-        }
-        
-        //Delete user.post
-        User.findByIdAndUpdate(req.user.id,
-                {"$pull": {"post": req.params.id}});
-        console.log('line 241');
-        //Delete Post
-        Post.findByIdAndDelete(req.params.id);
-        console.log('line244');
-        res.redirect('back');   */
 
         Post.findById(req.params.id, (err, post) => {
             for(var i=0; i<post.comment.length; i++) {
@@ -330,11 +296,6 @@ router.delete("/:id", async (req, res) => {
             }
         });
         res.redirect('back');   
-    } catch {
-        if (postToDelete === null) {
-            res.send('null');
-        }
-    }
 });
 
 // upload profile image
