@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "engines":{"node": "8.9.4",
+              "npm": "5.6.0"
+  },
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js"
-  },
-  "engines":{"node": "8.9.4"}, 
+  }, 
   "keywords": [],
   "author": "",
   "license": "ISC",
