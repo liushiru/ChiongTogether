@@ -39,8 +39,9 @@ const UserSchema = new mongoose.Schema({
         }
     ],
     img: {
-        contentType: String,
-        default:''
+        type: String,
+        default: "public/uploads/default.jpg",
+        required:true
     },
     date: {
         type: String,
