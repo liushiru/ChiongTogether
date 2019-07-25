@@ -23,12 +23,21 @@
                 <div id="chat">
                     <br>
                     <div id = "chat-window" class="card">
-                        <div id="output" class="card-block"><div id="feedback"></div></div>
+                        
+                        <div id="output" class="card-block">
+                            <% if (messages.length !== 0) {%>
+                            <%      for(var i=messages.length-1; i>=0; i--) {%>
+                <p><strong> <%=       messages[i].author.name %>: </strong><%= messages[i].body %></p>
+                            <%      }%>
+                            <% }%>
+                            <div id="feedback"></div>
+                        </div>
                         
                     </div>
                     <br>
-                    <!-- <form action="/chat/newChat" method="POST"> -->
-                    <input type="hidden" id="receiver" name="receiver" value="<% recipient %>">
+                    <!-- <form action="/chat/reply" method="POST"> -->
+                        <input type="hidden" id="receiver" name="receiver" value="<% recipient %>">
+                        <input type="hidden" id="conversationId" name="conversationId" value="<%= conversationId %>">
                         <textarea id="message" class="form-control" type="message" name="message" placeholder="Enter message..."></textarea>
                         <button id="send" type="submit" class="btn btn-primary">Send</button>
                     <!-- </form> -->
@@ -40,54 +49,39 @@
     <!-- <script src='chat.js' ></script> -->
     
     <script>
-         var socket = io.connect('http://localhost:5000', { query: "recipientId=<%= sender.id %>" });
-        //const socket = new WebSocket('http://localhost:5000');
-        var receiver = document.getElementById('receiver');
+        var socket = io.connect('http://localhost:5000', { query: "senderId=<%= sender.id %>&recipientId=<%= recipient %>&conversationId=<%= conversationId %>" });
+        //var receiver = document.getElementById('receiver');
         var output = document.getElementById('output');
         var btn = document.getElementById('send');
         var message = document.getElementById('message');
-        var feedback = document.getElementById('feedback')
-        
-        // Emit events
-        
-        // Establish the connection
-        // socket.addEventListener('connect', () => {
-        //     console.log('what?');
-        //     socket.emit('openess', {
-        //         openerSocket: socket.id,
-        //         openerId: '<%= sender.id %>',
-        //         recipient: '<%= name %>'
-        //     });
-        // });
-        /*
-        var room = '<%= sender.id %>'
-        socket.addEventListener('connect', () => {
-            console.log(room);
-            socket.rooms.push(room);
-        });
-        socket.addEventListener('onopen', (event) => {
-            console.log('what?..');
-        })
-        var what = socket.onopen( (event) => {
-            console.log(event);
-            console.log('what.?');
-        })
-        console.log(what);
-*/
+       
         // Click the send button
         btn.addEventListener('click', function(){
-            socket.emit('chat', {
+                socket.emit('chat', {
                 senderSocket: socket.id,
-                senderId: '<%= sender.id %>',
+                senderId: '<%= sender._id %>',
                 message: message.value,
-                recipient: '<%= name %>'
+                recipient: '<%= recipient %>'
             });
+            console.log('sender_id ' + '<%= sender._id %>');
+            console.log('recipient id ' + '<%= recipient %>');
+            console.log(socket.id);
         });
         // Listen for events
-        socket.on('chat', function(data){
-            output.innerHTML += '<p><strong>' + "<%= sender.name %>" + ':</strong>' + data.message + '</p>'
+        var i = 0;
+        socket.on('chat', function(data, sender){
+            console.log('are you recieving events? ' + i++);
+            console.log(data);
+            output.innerHTML += '<p><strong>' + sender + ': </strong>' + data.message + '</p>'
         });        
 
-
+        function empty() {
+            var x;
+            x = document.getElementById("message").value;
+            if (x == "") {
+                alert("Enter a Valid Roll Number");
+                return false;
+            };
+        }
     </script>
 </body>
