@@ -42,7 +42,7 @@ position: relative;
 /*------------------------------edit---------------------------------*/
 
 .edit-btn{
-  background-color:rgb(66, 90, 48);
+  background-color:rgb(74, 133, 30);
   padding: 10px 20px;
   border: none;
   outline: none;
@@ -54,12 +54,20 @@ position: relative;
   font-family: Montserrat-Regular;
 }
 .edit-btn:hover{
-  background-color:rgb(37, 49, 27);
+  background-color:rgb(53, 83, 29);
 }
 
 /*--------------------------------post----------------------------*/
+.post-title-display{
+  float: left;
+  color:rgb(112, 112, 112);
+  font-family: Montserrat-Regular;
+  font-size: 20px;
+  margin: 10px;
+}
+
 .delete-btn{
-  background-color: white;
+  background-color:none;
   border: none;
   color: rgb(209, 75, 75);
   padding: 12px 14px;
@@ -70,8 +78,20 @@ position: relative;
 .delete-btn:hover{
   color: white;
   background-color: rgb(209, 75, 75);
+  font-family: Montserrat-Regular;
+  font-size: 20px;
 }
 
+.nothing{
+  margin: 20px;
+  color:rgb(156, 156, 156);
+  font-family: Montserrat-Regular;
+  font-size: 15px;
+}
+
+.select:hover{
+  background-color: rgb(216, 215, 215);
+}
 /*------------------------------extenable------------------------------*/
 .accordion {
     background-color: rgb(217, 223, 213);
