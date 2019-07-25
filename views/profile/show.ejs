@@ -51,11 +51,11 @@
           <div class="forum-content-section-a">
             <div class="container">
               <div class="row">
-
-                <button class="accordion">Section 1</button>
+<!------------------------------------profile------------------------>
+                <button class="accordion">Profile</button>
+                
                 <div class="panel">
                     <div class="row">
-
                         <!--------------photo------------------->
                         <div class="col-md-4">
                             <div class="profile-work">
@@ -68,17 +68,7 @@
                         </div>
                         <!-------basic info------------------>
                         <div class="col-md-8">
-                            <div class="tab-content profile-tab" id="myTabContent">
-                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                    
-                                    <!-- <div class="row">
-                                        <div class="col-md-6">
-                                            <label>User Id</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p><%= user.name %></p>
-                                        </div>
-                                    </div> -->
+                            <div class="tab-content profile-tab">
                                                 
                                     <div class="row">
                                         <div class="col-md-6">
@@ -139,16 +129,42 @@
 
 
                                     <!--major/minor/age/gender-->
-                                </div>
+
                             </div>    
                         </div>
-
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4">
+                            <% if (edit) { %>
+                                <a class="edit-btn" href="/users/<%= user.matricNo %>/edit"> edit </a>
+                            <% } %>
+                        </div>
+                        <div class="col-sm-4"></div>   
                     </div>
                 </div>
+<!------------------------------------post------------------------>
+                <button class="accordion">Post</button>
 
-                <button class="accordion">Section 2</button>
                 <div class="panel">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <% for(var i=0; i<user.post.length; i++) { %>
+                            <ul>
+                                <li> 
+                                    <div class="row">
+                                        <div class="col-sm-10">
+                                            <a href="/forum/<%= posts[i].id %>"> <%= posts[i].title %> </a>
+                                        </div>
+                                        
+                                        <!--Delete-->
+                                        <div class="col-sm-2">
+                                            <% if (edit) { %>
+                                                <%- include('../partials/delete_post',{ url: `/users/${posts[i].id}` }) %>
+                                            <% } %>
+                                        </div> 
+                                    </div>                                                              
+                                </li>
+                            </ul>
+                        <% } %>                      
                 </div>
 
                 <button class="accordion">Section 3</button>

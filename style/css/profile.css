@@ -1,3 +1,78 @@
+/*-----------------------------header----------------------------------*/
+.profile-message{
+  position: relative;
+  padding-top: 10%;
+  padding-bottom: 4%;
+}
+
+.profile-message > h1 {
+  font-family: Montserrat-Regular;
+  margin-bottom: 20px;
+  font-size: 50px;
+  text-shadow: 2px 2px 3px rgba(76, 86, 129, 0.6);
+}
+
+/*------------------------------image-----------------------------------*/
+.profile-img{
+  float:center;
+  margin-left: 0;
+width: 150px;
+height: 150px;
+overflow: hidden;
+border: none;
+margin: 30px;
+}
+
+.profile-img img{
+  height: 100%;
+width: auto;
+left:50%;
+position: relative;
+-webkit-transform: translateX(-50%);
+-ms-transform: translateX(-50%);
+-moz-transform: translateX(-50%);
+}
+@media(max-width:767px) {
+  .profile-img{
+      margin-left:10%;
+      margin-top: 20px;
+  }
+}
+
+/*------------------------------edit---------------------------------*/
+
+.edit-btn{
+  background-color:rgb(66, 90, 48);
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  border-radius: 0.5rem;
+  margin-bottom: 20px;
+  color:rgb(217, 223, 213);
+  font-size: 15px;
+  opacity: 1;
+  font-family: Montserrat-Regular;
+}
+.edit-btn:hover{
+  background-color:rgb(37, 49, 27);
+}
+
+/*--------------------------------post----------------------------*/
+.delete-btn{
+  background-color: white;
+  border: none;
+  color: rgb(209, 75, 75);
+  padding: 12px 14px;
+  border-radius:5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.delete-btn:hover{
+  color: white;
+  background-color: rgb(209, 75, 75);
+}
+
+/*------------------------------extenable------------------------------*/
 .accordion {
     background-color: rgb(217, 223, 213);
     color:rgb(106, 121, 93);
@@ -11,7 +86,7 @@
     font-size: 20px;
     transition: 0.4s;
     border-radius: 5px;
-    margin: 10px;
+    margin: 15px;
   }
   
   .active, .accordion:hover {
@@ -21,14 +96,25 @@
   button.accordion.active{
     background-color: rgb(177, 204, 156);
 }
-  
-  .panel {
-    padding: 10 px;
-    background-color: white;
-    opacity: 0.8;
-    border-radius: 5px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
-    margin: 10px;
-  }
+
+.accordion:after {
+  content: '+'; 
+  font-size: 20px;
+  color: rgb(106, 121, 93);
+  float: right;
+  margin-right: 10px;
+}
+
+.active:after {
+  content: "-";
+}
+.panel {
+  padding: 30px;
+  background-color: white;
+  opacity: 0.9;
+  border-radius: 5px;
+  overflow: hidden;
+  display: none;
+  margin: 10px;
+  width: 100%;
+}
