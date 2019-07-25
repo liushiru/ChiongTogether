@@ -1,81 +1,92 @@
+<!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-    <div class="container">
-        <!--name-->
-        <a class="navbar-brand js-scroll-trigger" href="/home">Chiong Together</a>
-        
-        <!--Menu Button-->
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fa fa-bars fa-fw"></i>
-        Menu
-        </button>
-
-        <!--nav bar-->
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/forum/startJio">Start a Jio</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/forum">Forum</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#">Study Clique</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#">Focus</a>
+        <div class="container">
+            <!--name-->
+            <a class="navbar-brand js-scroll-trigger" href="/home">Chiong Together</a>
+            
+            <!--Menu Button-->
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa fa-bars fa-fw"></i>
+            Menu
+            </button>
+      
+            <!--nav bar-->
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="/forum/startJio">Start a Jio</a>
                 </li>
-            <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/dashboard">My Account</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/users/logout">Logout</a>
-            </li>
-        </ul>
+                <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="/forum">Forum</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="#">Study Clique</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#">Focus</a>
+                    </li>
+                <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="/dashboard">My Account</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="/users/logout">Logout</a>
+                </li>
+            </ul>
+            </div>
         </div>
-    </div>
-</nav>
+      </nav>
 
 <!-- Header -->
 <div class="intro-header">
-<div class="container">
-    <div class="row">
-        
-        <div class="col-lg-12">
-            <div class="profile-message">
-                <h1>Hello <%= user.name %> :)</h1>
-            </div>   
-        </div>
-<!----------------------------------------------1------------------------------------------------------------------------->    
-<div class="row mt-5">
-    <div class="col-md-6 m-auto">
-      <div class="card card-body">
-        <h1 class="text-center mb-3">
-          <i class="fas fa-user-plus"></i> Edit Profile
-        </h1>
-        
-        <% include ../partials/messages %>
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-12">
+                    <div class="profile-message">
+                        <h1>Hello <%= user.name %> :)</h1>
+                    </div>   
+                </div>
+      
+                <!------------------------table---------------------------------->
+                <div class="forum-content-section-a">
+                  <div class="container">
+                    <div class="row">
 
-        <form action="/users/change?_method=PUT" method="POST">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input
-              type="name"
-              id="name"
-              name="name"
-              class="form-control"
-              placeholder="Enter Name"
-              value="<%= typeof name != 'undefined' ? name : '' %>"
-            />
-          </div>
-          <button type="submit" class="btn btn-primary">
-            Update
-          </button>
-        </form>
-        <p><a href="/users/:matricNo">Cancle</a></p>
-      </div>
+                            <button class="accordion">Profile</button>
+                
+                                <div class="panel">
+                                    <div class="row">
+                                        <!--------------photo------------------->
+                                        <div class="col-md-4">
+                                            <div class="profile-work">
+                                                <div class="profile-img">
+                                                    <% var path = JSON.stringify(user.img) %>
+                                                    <% var prettyPath = JSON.parse(path) %>
+                                                    <img src='<%= prettyPath %>' class="responsive-img">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-------basic info------------------>
+                                        <div class="col-md-8">
+                                            <div class="tab-content profile-tab">
+                                                                
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label>Name</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p><%= user.name %></p>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </buttom>
+                    </div>
+                  </div>
+                </div>
+            <!------------------------table---------------------------------->
+        </div>
     </div>
-  </div>
-<!-----------------------------------------1-------------------------------------------------------->    
-    </div>
-</div>
 </div>

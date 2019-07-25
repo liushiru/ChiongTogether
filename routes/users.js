@@ -218,7 +218,7 @@ router.get("/:matricNo/edit", ensureAuthenticated, async (req, res) => {
     // } catch {
     //     res.render('../views/error');
     // }
-    res.render('../views/profile/edit1', { user : req.user })
+    res.render('../views/profile/edit', { user : req.user })
 });
 
 router.put('/change', ensureAuthenticated, async (req, res) => {

@@ -39,6 +39,23 @@ position: relative;
   }
 }
 
+/*----------------------------text------------------------------*/
+.profile-work{
+  padding: 14%;
+  margin-top: -15%;
+}
+.profile-tab label{
+  font-weight: 600;
+  color: rgb(106, 121, 93);
+  padding: 10px;
+  text-align: left;
+}
+.profile-tab p{
+  font-weight: 600;
+  color: rgb(106, 121, 93);
+  padding: 10px;
+  text-align: left;
+}
 /*------------------------------edit---------------------------------*/
 
 .edit-btn{
