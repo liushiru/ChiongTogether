@@ -25,6 +25,7 @@
 
         <!--Profile-->
         <link href="/style/css/profile_page.css" rel="stylesheet">
+        <link href="/style/css/profile.css" rel="stylesheet">
     </head>
 <body>
     <div>
@@ -41,23 +42,23 @@
     <!--Home Page-->
     <script src="/style/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/style/js/grayscale.min.js"></script>
-    
-    <!--profile-->
+
     <script>
         var acc = document.getElementsByClassName("accordion");
-
-        for(var i=0; i<acc.length; i++){
-            acc[i].addEventListener = ("click", function(){
-                this.classList.toggle("active");
-                var panel = this.nextElementSibing;
-                if (panel.style.maxHeight){
-                    panel.style.maxHeight = null;
-                } else {
-                    panel.style.maxHeight = panel.scrollHeight + "px";
-                } 
-            });
+        var i;
+        
+        for (i = 0; i < acc.length; i++) {
+          acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight){
+              panel.style.maxHeight = null;
+            } else {
+              panel.style.maxHeight = panel.scrollHeight + "px";
+            } 
+          });
         }
-    </script>
+    </script>  
 
 </body>
 </html>

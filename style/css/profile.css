@@ -1,0 +1,34 @@
+.accordion {
+    background-color: rgb(217, 223, 213);
+    color:rgb(106, 121, 93);
+    font-family: Montserrat-Regular;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 20px;
+    transition: 0.4s;
+    border-radius: 5px;
+    margin: 10px;
+  }
+  
+  .active, .accordion:hover {
+    background-color: rgb(177, 204, 156);
+  }
+
+  button.accordion.active{
+    background-color: rgb(177, 204, 156);
+}
+  
+  .panel {
+    padding: 10 px;
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 5px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    margin: 10px;
+  }

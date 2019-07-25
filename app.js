@@ -7,7 +7,8 @@ const session = require('express-session');
 const passport = require('passport');
 const app = express();
 const methodOverride = require('method-override');
-var path = require('path'); 
+const path = require('path'); 
+const multer = require('multer');
 const socketEvents = require('./socketEvents');
 const User = require('./models/User');
 const Message = require('./models/Message');
@@ -32,8 +33,12 @@ app.use(expressLayouts);
 app.set('view engine', 'ejs');
  
 //Static
-//app.use('./views/chat', express.static(path.join(__dirname, 'views')));
 app.use('/style', express.static('style'));
+//app.use(express.static('./public'));
+app.use('/users/public/uploads', express.static('public/uploads'));
+//The below version works as well
+//app.use('/public/uploads', express.static(path.join(__dirname, 'public/uploads')));
+
 
 //methodOverride
 app.use(methodOverride('_method'));
@@ -75,6 +80,7 @@ app.use('/users', require('./routes/users'));
 app.use('/forum', require('./routes/forum'));
 app.use('/chat', require('./routes/chat'))
 
+
 //Body-parser
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -82,7 +88,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-
+// Multer for image upload
 
 const PORT = process.env.PORT || 5000;
 

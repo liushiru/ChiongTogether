@@ -3,13 +3,51 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
+const fs = require('fs');
+const multer = require('multer');
+const path = require('path')
 // Uswer model
 const User = require('../models/User');
 const Post = require('../models/Post');
 const Comment = require('../models/Comment');
 
+//
+//router.use(express.static('./public'));
 
+
+// Set The Storage Engine
+const storage = multer.diskStorage({
+    destination: './public/uploads/',
+    filename: function(req, file, cb){
+      cb(null,file.fieldname + '-' + req.user.id + path.extname(file.originalname));
+    }
+  });
+  
+  // Init Upload
+  const upload = multer({
+    storage: storage,
+    limits:{fileSize: 1000000},
+    fileFilter: function(req, file, cb){
+      checkFileType(file, cb);
+    }
+  }).single('myImage');
+  
+  // Check File Type
+  function checkFileType(file, cb){
+    // Allowed ext
+    const filetypes = /jpeg|jpg|png|image/;
+    // Check ext
+    const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+    // Check mime
+    const mimetype = filetypes.test(file.mimetype);
+  
+    if(mimetype && extname){
+      return cb(null,true);
+    } else {
+      cb('Error: Images Only!');
+    }
+  }
 //login page
 router.get('/login', (req, res) => res.render('../views/login/login'));
 
@@ -176,7 +214,6 @@ router.get("/:matricNo", ensureAuthenticated, (req, res, next) =>{
 
 router.get("/:matricNo/edit", ensureAuthenticated, async (req, res) => {
     try {
-        //const user = User.findById(req.params.matricNo)
         res.render('../views/profile/edit1', { user : req.user })
     } catch {
         res.render('../views/error');
@@ -299,4 +336,43 @@ router.delete("/:id", async (req, res) => {
     }
 });
 
+// upload profile image
+router.post('/upload', ensureAuthenticated, (req, res) => {
+    upload(req, res, (err) => {
+      if(err){
+        res.render('error', {
+          msg: err
+        });
+        console.log(err);
+      } else {
+        if(req.file == undefined){
+            console.log('no fileselected')
+            res.redirect('back', {
+            msg: 'Error: No File Selected!'
+          });
+        } else {
+            User.findById(req.user.id, (err, user) => {
+                let newUser = user;
+                console.log(req.file);
+                
+                const path = `public/uploads/${req.file.filename}`;
+                //newUser.img.data = fs.readFileSync(req.file.path);
+             
+                        User.findOneAndUpdate({_id: req.user.id}, {img: path}, (err, updatedUser) => {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                res.redirect('/users/' + req.user.matricNo);
+                            }
+                            
+                        });
+                    
+        
+                
+                //let updatedUser = User.findById(req.user.id);
+          });
+        }
+      }
+    });
+  });
 module.exports = router;

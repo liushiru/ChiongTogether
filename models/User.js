@@ -32,12 +32,16 @@ const UserSchema = new mongoose.Schema({
            ref: "Post"
         }
      ],
-     comment: [
-         {
-             type: mongoose.Schema.Types.ObjectId,
-             ref: "Comment"
-         }
-     ],
+    comment: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Comment"
+        }
+    ],
+    img: {
+        contentType: String,
+        default:''
+    },
     date: {
         type: String,
         default: Date.now
