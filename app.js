@@ -9,7 +9,6 @@ const app = express();
 const methodOverride = require('method-override');
 const path = require('path'); 
 const multer = require('multer');
-const socketEvents = require('./socketEvents');
 const User = require('./models/User');
 const Message = require('./models/Message');
 const Conversation = require('./models/Conversation');
