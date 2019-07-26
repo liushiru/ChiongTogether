@@ -1,8 +1,7 @@
 <h1><img src="./public/uploads/default.jpg" alt="ChiongTogether Icon" width="7%"> ChiongTogether</h1>
 
 #### _A User Guide_
-# <img src="./public/images/Homepage.png" width="60%">
-![img](public/Images/Homepage.png)
+# ![Homepage](public/Images/Homepage.png)
 
 
 
@@ -45,7 +44,8 @@ Clone this repository to a folder and run the following command in the root dire
 
 #### Page Guide
 
-# <img src="./public/images/profile_page.png" width="100%">
+# ![profile page](public/Images/profile_page.png)
+
 
 ##### **1. Registration and Login**
 You need to login to you to access all the resources. Create or register for one in at <a href='http://localhost:5000'>http://localhost:5000</a>
@@ -66,15 +66,16 @@ You can also update your own information such as username, course of study, prof
 * **Searching**
     Search bar is located at the [home page](http://localhost:5000/home). 
 * **Commenting**
-<img src="./public/images/post.png" width="100%"> 
-  Leave you comment at "_I Wanna Join_" section to let others know that you are interested.
+# ![singple post](public/Images/post.png)
+
+  Leave you comment at [_"I Wanna Join"_](#singple-postpublicimagespostpng) section to let others know that you are interested.
 
 #### **3. Realtime Chatting**
 This website also allows you to directly talk to a person through private messaging. 
 * **Chat to another user**
- Navigateto the profile page of the person you want to talk to and click on "[_Direct Message_](#img-src%22publicimagesprofilepagepng%22-width%22100%22)" button to chat with the person. 
+ Navigateto the profile page of the person you want to talk to and click on "[_Direct Message_](#profile-pagepublicimagesprofilepagepng)" button to chat with the person. 
 * **View all chats**
-  You can view all the chats you have in your [profile page](#img-src%22publicimagesprofilepagepng%22-width%22100%22).
+  You can view all the chats you have in your [profile page](#profile-pagepublicimagesprofilepagepng).
 
 
 *****
