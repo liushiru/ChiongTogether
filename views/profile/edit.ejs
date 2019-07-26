@@ -43,18 +43,20 @@
                 
                 <div class="col-lg-12">
                     <div class="profile-message">
-                        <h1>Hello <%= user.name %> :)</h1>
+                        <h1>Edit Profile</h1>
                     </div>   
                 </div>
+
+                <% include ../partials/messages %>
       
                 <!------------------------table---------------------------------->
                 <div class="forum-content-section-a">
                   <div class="container">
                     <div class="row">
 
-                            <button class="accordion">Profile</button>
+                            <div class="edit-accordion">Profile</div>
                 
-                                <div class="panel">
+                                <div class="edit-panel">
                                     <div class="row">
                                         <!--------------photo------------------->
                                         <div class="col-md-4">
@@ -64,22 +66,35 @@
                                                     <% var prettyPath = JSON.parse(path) %>
                                                     <img src='<%= prettyPath %>' class="responsive-img">
                                                 </div>
+                                                <form action="/users/upload" method="POST" enctype="multipart/form-data">
+                                                    <label class="upload-btn"> Upload
+                                                        <input name="myImage" type="file">
+                                                    </label>
+                                                    <button type="submit" class="save-btn">Save</button>
+                                                </form>
                                             </div>
                                         </div>
                                         <!-------basic info------------------>
                                         <div class="col-md-8">
-                                            <div class="tab-content profile-tab">
-                                                                
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label>Name</label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <p><%= user.name %></p>
-                                                        </div>
-                                                    </div>
-                                            </div>
+                                            <form action="/users/change?_method=PUT" method="POST">
+                                                <div class="form-group">
+                                                  <label for="name">Name</label>
+                                                  <input
+                                                    type="name"
+                                                    id="name"
+                                                    name="name"
+                                                    class="form-control"
+                                                    placeholder="Enter Name"
+                                                    value="<%= typeof name != 'undefined' ? name : '' %>"
+                                                  />
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">
+                                                  Update
+                                                </button>
+                                              </form>
+                                              <p><a href="/users/:matricNo">Cancle</a></p>
                                         </div>
+                                        
                                     </div>
                                 </div>
                             </buttom>
