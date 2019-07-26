@@ -43,7 +43,8 @@
           
           <div class="col-lg-12">
               <div class="profile-message">
-                  <h1>Hello <%= user.name %> :)</h1>
+                  
+                  <h1><%= (edit ? 'Hello ': 'This is ') + user.name + ' :)'%></h1>
               </div>   
           </div>
 
@@ -64,12 +65,14 @@
                                     <% var prettyPath = JSON.parse(path) %>
                                     <img src='<%= prettyPath %>' class="responsive-img">
                                 </div>
+                            <% if (edit) { %>
                                 <form action="/users/upload" method="POST" enctype="multipart/form-data">
                                     <label class="upload-btn"> Upload new pic
                                         <input name="myImage" type="file">
                                     </label>
                                     <button type="submit" class="save-btn">Save current pic</button>
                                 </form>
+                            <%} %>
                             </div>
                         </div>
                         <!-------basic info------------------>

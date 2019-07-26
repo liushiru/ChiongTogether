@@ -1,14 +1,12 @@
 <h1><img src="./public/uploads/default.jpg" alt="ChiongTogether Icon" width="7%"> ChiongTogether</h1>
 
 #### _A User Guide_
-![Homepage][Homepage]
+<img src="./public/images/Homepage.png" width="100%">
 
-[Homepage]: ./public/images/Homepage.png
 
 
 *****
-<p style="text-align: center;">National University of Singapore</p>
------
+<h2><p style="text-align: center;">National University of Singapore</p></h2>
 
 ####<p style="text-align: right;">Orbital 2019</p>
 
@@ -17,7 +15,7 @@
 Team Members: Liu Shiru & Han Yuxuan
 Advisor: Ang Khay Wee_**
 
-***
+************
 
 
 
@@ -40,24 +38,52 @@ Clone this repository to a folder and run the following command in the root dire
 ---------------------
 
 ###Main Functionalities Overview
-**1. Registration and Login**
+**1. [Registration and Login](#)**
 * **Profile Page**
    
 **2. Forum Posting**
 * **Posting (Start a Jio)**  
-* **Commenting**
 * **Searching**
-  
+* **Commenting**
+    
 **3. Realtime Chatting**
 * **Chat to another user**
 * **View all chats**
 
 -----------------
 
-1. Registration and Login
+####Page Guide
+
+<img src="./public/images/profile_page.png" width="100%">
+
+#####**1. Registration and Login**
+You need to login to you to access all the resources. Create or register for one in at <a href='http://localhost:5000'>http://localhost:5000</a>
+
+* **Profile Page**
+Click on "_My Account_" tab at the nevigation bar to view your account.   
+You can also update your own information such as username, course of study, profile page and current academic year.  
 
 
+
+
+
+
+
+#####**2. Forum Posting**
+* **Posting (Start a Jio)**  
+  You can post by clicking on the "_Start a Jio_" tab at the navigatin bar. 
+* **Searching**
+    Search bar is located at the [home page](http://localhost:5000/home). 
+* **Commenting**
+<img src="./public/images/post.png" width="100%"> 
+  Leave you comment at "_I Wanna Join_" section to let the poster for 
+
+------------------
 <div style="page-break-after: always;">
 <p>Lmao how to apply page break</p>
 </div>
 ![ChiongTogether Icon](./public/uploads/default.jpg)
+
+![Homepage][Homepage]
+
+[Homepage]: www
