@@ -64,6 +64,12 @@
                                     <% var prettyPath = JSON.parse(path) %>
                                     <img src='<%= prettyPath %>' class="responsive-img">
                                 </div>
+                                <form action="/users/upload" method="POST" enctype="multipart/form-data">
+                                    <label class="upload-btn"> Upload new pic
+                                        <input name="myImage" type="file">
+                                    </label>
+                                    <button type="submit" class="save-btn">Save current pic</button>
+                                </form>
                             </div>
                         </div>
                         <!-------basic info------------------>

@@ -56,48 +56,31 @@
 
                             <div class="edit-accordion">Profile</div>
                 
-                                <div class="edit-panel">
+                            <div class="edit-panel">
+                                <form action="/users/change?_method=PUT" method="POST">
                                     <div class="row">
-                                        <!--------------photo------------------->
                                         <div class="col-md-4">
-                                            <div class="profile-work">
-                                                <div class="profile-img">
-                                                    <% var path = JSON.stringify(user.img) %>
-                                                    <% var prettyPath = JSON.parse(path) %>
-                                                    <img src='<%= prettyPath %>' class="responsive-img">
-                                                </div>
-                                                <form action="/users/upload" method="POST" enctype="multipart/form-data">
-                                                    <label class="upload-btn"> Upload
-                                                        <input name="myImage" type="file">
-                                                    </label>
-                                                    <button type="submit" class="save-btn">Save</button>
-                                                </form>
-                                            </div>
+                                            <label for="name">Name</label>
                                         </div>
-                                        <!-------basic info------------------>
                                         <div class="col-md-8">
-                                            <form action="/users/change?_method=PUT" method="POST">
-                                                <div class="form-group">
-                                                  <label for="name">Name</label>
-                                                  <input
-                                                    type="name"
-                                                    id="name"
-                                                    name="name"
-                                                    class="form-control"
-                                                    placeholder="Enter Name"
-                                                    value="<%= typeof name != 'undefined' ? name : '' %>"
-                                                  />
-                                                </div>
-                                                <button type="submit" class="btn btn-primary">
-                                                  Update
-                                                </button>
-                                              </form>
-                                              <p><a href="/users/:matricNo">Cancle</a></p>
-                                        </div>
-                                        
+                                            <input
+                                            type="name"
+                                            id="name"
+                                            name="name"
+                                            class="form-control"
+                                            value="<%= user.name %>"
+                                            value="<%= typeof name != 'undefined' ? name : '' %>"
+                                            />
+                                        </div>   
                                     </div>
-                                </div>
-                            </buttom>
+
+                                    <button type="submit" class="btn btn-primary">
+                                        Update
+                                    </button>
+                                    </form>
+                                    <p><a href="/users/:matricNo">Cancle</a></p>                     
+                            </div>
+ 
                     </div>
                   </div>
                 </div>
