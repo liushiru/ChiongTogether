@@ -2,6 +2,7 @@
 
 #### _A User Guide_
 # <img src="./public/images/Homepage.png" width="60%">
+![img](public/Images/Homepage.png)
 
 
 
@@ -79,7 +80,7 @@ This website also allows you to directly talk to a person through private messag
 *****
 <h2><p style="text-align: center;">National University of Singapore</p></h2>
 
-####<p style="text-align: right;">Orbital 2019</p>
+<h4> <p style="text-align: right;">Orbital 2019</p> </h4>
 
 
 **_Team: ChiongTogether  
