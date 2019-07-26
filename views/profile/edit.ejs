@@ -60,25 +60,67 @@
                                 <form action="/users/change?_method=PUT" method="POST">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label for="name">Name</label>
+                                            <label class="edit-label" for="name">Name</label>
                                         </div>
-                                        <div class="col-md-8">
+                                        <div class="col-md-8 type-in-bar">
                                             <input
                                             type="name"
                                             id="name"
                                             name="name"
-                                            class="form-control"
+                                            class="login-input"
                                             value="<%= user.name %>"
                                             value="<%= typeof name != 'undefined' ? name : '' %>"
                                             />
                                         </div>   
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label class="edit-label" for="name"> Academic Year</label>
+                                        </div>
+                                        <div class="col-md-8 type-in-bar">
+                                            <datalist id="years">
+                                                <select name="year" aria-describedby="state_label">
+                                                        <option value="1">1</option> 
+                                                        <option value="2">2</option> 
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option> 
+                                                        <option value="5">5</option> 
+                                                </select>
+                                            </datalist>
+                                            <input
+                                            type="year"
+                                            id="year"
+                                            list="years"
+                                            value="<%= typeof year !== 'undefined' ? year : user.year %>"
+                                            />
+                                        </div>   
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label class="edit-label" for="name">Course of Study</label>
+                                        </div>
+                                        <div class="col-md-8 type-in-bar">
+                                            <input
+                                            type="course"
+                                            id="course"
+                                            name="course"
+                                            class="login-input"
+                                            value="<%= user.course %>"
+                                            value="<%= typeof course != 'undefined' ? course : user.course %>"
+                                            />
+                                        </div>   
+                                    </div>
+
+                                    <button type="submit" class="edit-btn">
                                         Update
                                     </button>
+                                    
                                     </form>
-                                    <p><a href="/users/:matricNo">Cancle</a></p>                     
+
+                                    <p class="nothing"><a href="/users/:matricNo">Cancle</a></p>
+                                                         
                             </div>
  
                     </div>

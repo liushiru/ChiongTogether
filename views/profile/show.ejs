@@ -108,7 +108,11 @@
                                             <label>Academic Year</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <p><%= user.year %></p>
+                                            <% if (user.year !== '') {%>
+                                                <p><%= user.year %></p>                                                    
+                                            <% } else { %>
+                                                <p><a href="/users/<%= user.matricNo %>/edit">Complete your information now</a></p> 
+                                            <% }%>
                                         </div>
                                     </div>
 

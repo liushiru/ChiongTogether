@@ -216,3 +216,10 @@ input[type="file"] {
 .save-btn:hover{
   background-color:rgb(53, 83, 29);
 }
+
+.edit-label{
+  font-family: Montserrat-Regular;
+  font-size: 20px;
+  color: rgb(75, 69, 69);
+  margin: 5px;
+}
