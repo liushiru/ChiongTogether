@@ -74,6 +74,22 @@ position: relative;
   background-color:rgb(53, 83, 29);
 }
 
+.chat-btn{
+  background-color:rgb(253, 255, 251);
+  padding: 10px 20px;
+  border-color: none;
+  outline: none;
+  border-radius: 0.5rem;
+  color:rgb(118, 145, 124);
+  font-size: 15px;
+  opacity: 0.9;
+  font-family: Montserrat-Regular;
+}
+
+.chat-btn:hover{
+  background-color: rgb(118, 145, 124);
+  color:white;
+}
 /*--------------------------------post----------------------------*/
 .post-title-display{
   float: left;
@@ -154,6 +170,14 @@ position: relative;
   display: none;
   margin: 10px;
   width: 100%;
+}
+
+.accordion-show{
+    color:rgb(106, 121, 93);
+    font-family: Montserrat-Regular;
+    font-size: 20px;
+    padding:0;
+    margin:0;
 }
 
 /*----------------------------------edit-----------------------*/

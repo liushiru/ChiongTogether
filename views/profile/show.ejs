@@ -44,7 +44,14 @@
           <div class="col-lg-12">
               <div class="profile-message">
                   
-                  <h1><%= (edit ? 'Hello ': 'This is ') + user.name + ' :)'%></h1>
+                <h1><%= (edit ? 'Hello ': 'This is ') + user.name + ' :)'%></h1>
+
+                <% if(!edit) { %>
+                    <a class="chat-btn" href="/chat/new/<%= user._id %>"><i class="fa fa-comments"></i>  Chat with <%= user.name%></a>
+                <% } else { %>
+                    <a class="chat-btn" href="/chat//myChats"><i class="fa fa-comments"></i> View all chats</a>
+                <% } %>
+
               </div>   
           </div>
 
@@ -127,20 +134,15 @@
                                             <% if (user.course !== '') {%>
                                                 <p><%= user.course %></p>                                                    
                                             <% } else { %>
-                                                <p><a href="/users/<%= user.matricNo %>/edit">Complete your information now</a></p> 
+                                                <% if (edit){%>
+                                                    <p><a href="/users/<%= user.matricNo %>/edit">Complete your information now</a></p>
+                                                <% } else { %>
+                                                    <p>Unknown</p>
+                                                <%}%>
                                             <% }%>
                                         </div>
                                     </div>
                                     
-                                    <div class="row">
-                                            <div class="col-md-6">
-                                                <% if(!edit) { %>
-                                                    <label><a href="/chat/new/<%= user._id %>">Chat with her</a></label>
-                                                <% } %>
-                                            </div>
-                                    </div>
-
-
                                     <!--major/minor/age/gender-->
 
                             </div>    
@@ -157,8 +159,11 @@
                     </div>
                 </div>
 <!------------------------------------post------------------------>
-                <button class="accordion">My Jio</button>
-
+                <% if (edit) { %> 
+                    <button class="accordion">My Jio</button>
+                <% } else {%>
+                    <button class="accordion"> <%= user.name %>'s Jio</button>   
+                <% } %>
                 <div class="panel">
                         <% if (user.post.length === 0){ %>
                             <p class="nothing"> You have not created any jio yet.</p>

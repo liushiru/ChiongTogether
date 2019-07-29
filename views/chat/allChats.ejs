@@ -1,21 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    These are all your chats
-    <%    for(var i=0; i<recipients.length; i++) { %>
-        <h4><a href='/chat/new/<%= recipients[i].id %>'><%= recipients[i].name %></a></h4>
-        <%- include('../partials/delete_post', {url: `/chat/${recipients[i].id}`}) %>
-    <%    } %>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container">
+            <!--name-->
+            <a class="navbar-brand js-scroll-trigger" href="/home">Chiong Together</a>
+            
+            <!--Menu Button-->
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa fa-bars fa-fw"></i>
+            Menu
+            </button>
+      
+            <!--nav bar-->
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="/forum/startJio">Start a Jio</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="/forum">Forum</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="#">Study Clique</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#">Focus</a>
+                    </li>
+                <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="/dashboard">My Account</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="/users/logout">Logout</a>
+                </li>
+            </ul>
+            </div>
+        </div>
+      </nav>
 
-    <% if (recipients.length === 0) { %>
-        You currently have no chats yet. <a href='/forum/startJio'>Click here to make new friends now!</a>
-    <% }%>
+<!-- Header -->
+<div class="intro-header">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-12">
+                    <div class="profile-message">
+                        <h1>My Chat Room</h1>
+                    </div>   
+                </div>
+      
+                <!------------------------table---------------------------------->
+                <div class="forum-content-section-a">
+                  <div class="container">
+                    <div class="row">
 
-</body>
-</html>
+                        <div class="edit-panel">
+                                <% if (recipients.length === 0){ %>
+                                    <p class="nothing"> You have not created any jio yet.</p>
+                                    <a class="edit-btn" href='/forum/startJio'> Make some new friends now!</a>
+                                <% } else {%>    
+                                    <% for(var i=0; i<recipients.length; i++) { %>
+                                        <ul>
+                                            <li> 
+                                                <div class="row select">
+                                                    <a class="col-sm-8 " href='/chat/new/<%= recipients[i].id %>'>
+                                                        <p class="post-title-display" > <%= recipients[i].name %> </p>
+                                                    </a>
+                                                    
+                                                    <!--Delete-->
+                                                    <div class="col-sm-4">
+                                                        <%- include('../partials/delete_post', {url: `/chat/${recipients[i].id}`}) %>
+                                                    </div> 
+                                                </div>                                                              
+                                            </li>
+                                        </ul>
+                                    <% } %>
+                                <% } %>
+    
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!------------------------table---------------------------------->
+        </div>
+    </div>
+</div>
