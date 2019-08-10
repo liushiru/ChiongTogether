@@ -20,6 +20,13 @@ router.get('/dashboard', ensureAuthenticated, (req, res) =>
   })
 );
 
+//About
+router.get('/about', ensureAuthenticated, (req, res) =>
+  res.render('../views/about', {
+    user: req.user
+  })
+);
+
 //Logout
 router.get('/logout', ensureAuthenticated, (req, res) => {
   req.logout();
