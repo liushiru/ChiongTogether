@@ -66,14 +66,7 @@
           <div class="row">
 
             <div class="col-md-12">
-                <!-- <p>Your detail description</p> -->
-              <% for(var i=0; i<posts.length; i++) { %> 
-                <a href="/forum/<%= posts[i].id %>"> 
-                  <div class="forum-li">
-                    <%= posts[i].title %> 
-                  </div>
-                </a>
-              <% } %>
+
               <% if (posts.length === 0) {%>
                 <div class="col-lg-12">
                   <div class="type-message">
@@ -82,7 +75,24 @@
                     <h3><a href ='/forum/startJio'>Click here to start you own jio!</a></h3>  
                   </div>   
                 </div>
-              <% }%>
+
+              <% } else {%>
+                
+                <div class="row" id="forum-title">
+                  <div class="col-lg-6">Title</div>
+                  <div class="col-lg-4">Author</div>
+                  <div class="col-lg-2">Reply</div>
+                </div>
+
+                <% for(var i=0; i<posts.length; i++) { %> 
+                  <a href="/forum/<%= posts[i].id %>"> 
+                    <div class="forum-li">
+                      <%= posts[i].title %> 
+                    </div>
+                  </a>
+                <% } %>
+
+              <% } %>
             </div>
             
           </div>
