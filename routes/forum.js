@@ -45,19 +45,13 @@ router.get('/search', (req, res) => {
     res.redirect('back');
   }
 });
-//Create Post type
+//Create Post
 router.get('/startJio', ensureAuthenticated, (req, res) => 
-  res.render('../views/forum/start-jio-type', {
-    user: req.user
-  })
-);
-
-//study post
-router.get('/studyPost', ensureAuthenticated, (req, res) => 
   res.render('../views/forum/createPost-study', {
     user: req.user
   })
 );
+
 
 router.post('/studyPost', ensureAuthenticated, (req, res) => {
  
