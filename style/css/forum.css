@@ -148,11 +148,12 @@ div.forum-li:hover {
 }
 
 .search-btn{
+    padding:3px;
     border-radius: 10px;
     background: #9abebc;
     
     font-family: Montserrat-Bold;
-    font-size: 10px;
+    font-size: 15px;
     color: rgb(63, 62, 62);
     line-height: 1.2;
     text-transform: uppercase;
