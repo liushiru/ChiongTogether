@@ -157,6 +157,7 @@ div.forum-li:hover {
 
 .search-btn{
     padding:10px;
+    margin-left: 10px;
     border-radius: 10px;
     background: #9abebc;
     
@@ -287,4 +288,9 @@ div.forum-li:hover {
 .comment-section-0{
     background-color: #f8f8f8;
     padding: 20px;
+}
+
+.comment-name{
+    font-family: Montserrat-Bold;
+    color: rgb(63, 62, 62);
 }
