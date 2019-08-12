@@ -138,13 +138,21 @@ label.post-title {
 }
 
 div.forum-li {
-    background-color: #f8f8f8;
     width: 100%;
-    margin-bottom: 10px;
+    padding: 20px ;
+    margin: 15px;
+    border-radius: 3px;
+    background: white;
+    opacity: 0.7;
+
+    font-family: Montserrat-Regular;
+    color: #666666;
+    font-size: 20px;
+    line-height: 2.5;
 }
 
 div.forum-li:hover {
-    background-color: #4f837f;
+    background-color: #cae9c1;
 }
 
 .search-btn{
