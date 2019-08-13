@@ -36,29 +36,22 @@
     </div>
   </nav>
   
-  <!-- Header -->
-  <div class="intro-header">
+<!--Header-->
+<div class="type-header">
     <div class="container">
         <div class="row">
-            
+  <!------------------------------------------------------------------------------------------------------------------->
             <div class="col-lg-12">
-                <div class="profile-message">
+                <div class="type-message">
+  
+                    <h1>About</h1>
+                    <h3>Know more about Chiong Together</h3>
                     
-                  <h1><%= (edit ? 'Hello ': 'This is ') + user.name + ' :)'%></h1>
-  
-                  <% if(!edit) { %>
-                      <a class="chat-btn" href="/chat/new/<%= user._id %>"><i class="fa fa-comments"></i>  Chat with <%= user.name%></a>
-                  <% } else { %>
-                      <a class="chat-btn" href="/chat//myChats"><i class="fa fa-comments"></i> View all chats</a>
-                  <% } %>
-  
                 </div>   
             </div>
-  
-            <!------------------------table---------------------------------->
-            <div class="forum-content-section-a">
-              <div class="container">
-
+    <!--------------------------------------------------------->
+    <div class="post-content-section-a">
+      <div class="container">
 
                 <div class="row">
                     <div class="column" onclick="openTab('b1');" style="background:green;">Box 1</div>
