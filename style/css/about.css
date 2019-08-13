@@ -1,17 +1,34 @@
 /* The grid: Three equal columns that floats next to each other */
 .column {
     float: left;
-    width: 33.33%;
-    padding: 50px;
+    width: 23%;
+    padding: 20px;
     text-align: center;
     font-size: 25px;
     cursor: pointer;
-    color: white;
+
+    color: #586160;
+    font-family: Montserrat-Regular;
+    background-color: #e7f8df;
+    border-radius: 5px;
+  }
+
+  .column:hover {
+    color: #44643b;
+    font-family: Montserrat-Bold;
+    background-color: #bfd7b4;
+  }
+
+  .column:after{
+    color: #44643b;
+    font-family: Montserrat-Bold;
+    background-color: #bfd7b4;
   }
   
   .containerTab {
     padding: 20px;
-    color: white;
+    color: #586160;
+    background-color: #bfd7b4;
   }
   
   /* Clear floats after the columns */

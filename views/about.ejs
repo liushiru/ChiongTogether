@@ -54,30 +54,36 @@
       <div class="container">
 
                 <div class="row">
-                    <div class="column" onclick="openTab('b1');" style="background:green;">Box 1</div>
-                    <div class="column" onclick="openTab('b2');" style="background:blue;">Box 2</div>
-                    <div class="column" onclick="openTab('b3');" style="background:red;">Box 3</div>
+                    <div class="column" onclick="openTab('b1');" style="margin-right:25px;">How to start a jio</div>
+                    <div class="column" onclick="openTab('b2');" style="margin-right:25px;">How to join a jio</div>
+                    <div class="column" onclick="openTab('b3');" style="margin-right:25px;">How to contact others</div>
+                    <div class="column" onclick="openTab('b4');">How to manage my post</div>
                 </div>
-                
-                <!-- The expanding grid (hidden by default) -->
-                <div id="b1" class="row containerTab" style="display:none;background:green">
+              
+                <div id="b1" class="row containerTab" style="display:none;">
                   <!-- If you want the ability to close the container, add a close button -->
                   <span onclick="this.parentElement.style.display='none'" class="closebtn">x</span>
                   <h2>Box 1</h2>
                   <p>Lorem ipsum..</p>
                 </div>
                 
-                <div id="b2" class="row containerTab" style="display:none;background:blue">
+                <div id="b2" class="row containerTab" style="display:none;">
                   <span onclick="this.parentElement.style.display='none'" class="closebtn">x</span>
                   <h2>Box 2</h2>
                   <p>Lorem ipsum..</p>
                 </div>
                 
-                <div id="b3" class="row containerTab" style="display:none;background:red">
+                <div id="b3" class="row containerTab" style="display:none;">
                   <span onclick="this.parentElement.style.display='none'" class="closebtn">x</span>
                   <h2>Box 3</h2>
                   <p>Lorem ipsum..</p>
                 </div>
+
+                <div id="b4" class="row containerTab" style="display:none;">
+                    <span onclick="this.parentElement.style.display='none'" class="closebtn">x</span>
+                    <h2>Box 4</h2>
+                    <p>Lorem ipsum..</p>
+                  </div>
 
               </div>
             </div>
