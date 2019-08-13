@@ -166,8 +166,12 @@
                 <% } %>
                 <div class="panel">
                         <% if (user.post.length === 0){ %>
-                            <p class="nothing"> You have not created any jio yet.</p>
-                            <a class="edit-btn" href="/forum/startJio"> Create your first jio</a>
+                            <% if (edit) { %>
+                                <p class="nothing"> You have not created any jio yet.</p>
+                                <a class="edit-btn" href="/forum/startJio"> Create your first jio</a>
+                            <% } else { %>
+                                <p class="nothing"> <%= user.name %> has not created any jio yet.</p>
+                            <% } %>
                         <% } else {%>    
                             <% for(var i=0; i<user.post.length; i++) { %>
                                 <ul>
@@ -188,11 +192,6 @@
                                 </ul>
                             <% } %>
                         <% } %>                      
-                </div>
-<!------------------------------------------comment---------------------------->
-                <button class="accordion">Want To Join</button>
-                <div class="panel">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                 </div>
 
               </div>
