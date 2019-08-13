@@ -11,15 +11,12 @@
     font-family: Montserrat-Regular;
     border-radius: 3px 3px 0 0;
   }
-
-  .column:hover {
-    font-size:30px;
-  }
   
   .containerTab {
     padding: 20px;
     color: #586160;
-    background-color: #bfd7b4;
+    font-family: Montserrat-Regular;
+    text-align:left;
   }
   
   /* Clear floats after the columns */
@@ -35,4 +32,12 @@
     color: white;
     font-size: 35px;
     cursor: pointer;
+  }
+
+  .about-img{
+    float:center;
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
+    border: none;
   }
