@@ -2,27 +2,18 @@
 .column {
     float: left;
     width: 23%;
-    padding: 20px;
+    padding: 15px;
     text-align: center;
     font-size: 25px;
     cursor: pointer;
 
     color: #586160;
     font-family: Montserrat-Regular;
-    background-color: #e7f8df;
-    border-radius: 5px;
+    border-radius: 3px 3px 0 0;
   }
 
   .column:hover {
-    color: #44643b;
-    font-family: Montserrat-Bold;
-    background-color: #bfd7b4;
-  }
-
-  .column:after{
-    color: #44643b;
-    font-family: Montserrat-Bold;
-    background-color: #bfd7b4;
+    font-size:30px;
   }
   
   .containerTab {
