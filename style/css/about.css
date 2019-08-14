@@ -29,15 +29,16 @@
   /* Closable button inside the image */
   .closebtn {
     float: right;
-    color: white;
+    color: #586160;
     font-size: 35px;
     cursor: pointer;
   }
 
   .about-img{
     float:center;
-    width: 250px;
-    height: 250px;
+    width: 100%;
+    height: auto;
     overflow: hidden;
     border: none;
+    border-radius: 5px;
   }
