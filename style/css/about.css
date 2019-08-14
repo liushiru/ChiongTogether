@@ -42,3 +42,19 @@
     border: none;
     border-radius: 5px;
   }
+
+  .clear-btn{
+    color: white;
+    background-color: rgb(209, 75, 75);
+    font-family: Montserrat-Regular;
+    font-size: 20px;
+
+    border: none;
+    padding: 12px 14px;
+    border-radius:5px;
+    cursor: pointer;
+  }
+
+  .clear-btn:hover{
+    background-color: rgb(141, 44, 44);
+  }
